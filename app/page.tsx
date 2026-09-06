@@ -1,16 +1,9 @@
+import Header from "./components/Header";
+
 export default function Home() {
   return (
     <>
-      <header>
-        <nav aria-label="Main navigation">
-          <a href="#hero">Portfolio</a>
-          <ul>
-            <li><a href="#hero">Home</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </nav>
-      </header>
+      <Header />
 
       <main>
         <section id="hero">
