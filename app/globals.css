@@ -140,11 +140,17 @@ main {
   min-height: calc(100svh - var(--header-height));
   padding-top: var(--header-height);
   isolation: isolate;
+  overflow-x: clip;
 }
 
 main > section {
   position: relative;
-  z-index: 1;
+  z-index: 2;
+}
+
+footer {
+  position: relative;
+  z-index: 2;
 }
 
 .planet.glow {
@@ -162,6 +168,37 @@ main > section {
     #251d38 0 50%,
     rgba(129, 117, 182, 0.35) 100%
   );
+}
+
+.star.glow {
+  position: absolute;
+  z-index: 1;
+  top: var(--star-y);
+  left: var(--star-x);
+  width: var(--star-size);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+
+.star__surface {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  display: block;
+  background: var(--star-color);
+  clip-path: polygon(
+    50% 0%,
+    61% 39%,
+    100% 50%,
+    61% 61%,
+    50% 100%,
+    39% 61%,
+    0% 50%,
+    39% 39%
+  );
+  opacity: var(--star-opacity);
 }
 
 .glow {
