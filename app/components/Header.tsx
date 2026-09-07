@@ -4,6 +4,7 @@ import { Menu, X } from "lucide-react";
 import { Unbounded } from "next/font/google";
 import { useState } from "react";
 import { FaGithub, FaLinkedin } from "react-icons/fa6";
+import { createGlowStyle } from "../lib/createGlowStyle";
 
 const unbounded = Unbounded({ subsets: ["latin"] });
 
@@ -20,33 +21,55 @@ const socialLinks = [
   },
 ];
 
+const navigationLinks = [
+  { label: "Projects", href: "#projects" },
+  { label: "Contact", href: "#contact" },
+];
+
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <header className="header">
       <div className="header__content">
-        <a className={`header__title ${unbounded.className}`} href="#hero">
-          Austin Tillotson
+        <a
+          className={`header__title glow glow--hover ${unbounded.className}`}
+          href="#hero"
+          style={createGlowStyle()}
+        >
+          <span className="glow__content">Austin Tillotson</span>
         </a>
 
         <nav className="header__nav" aria-label="Main navigation">
-          <a href="#projects">Projects</a>
-          <a href="#contact">Contact</a>
+          {navigationLinks.map(({ label, href }) => (
+            <a
+              key={label}
+              className="header__nav-link glow glow--hover"
+              href={href}
+              style={createGlowStyle()}
+            >
+              <span className="header__nav-link-label">{label}</span>
+            </a>
+          ))}
         </nav>
 
         <div className="header__actions">
-          <a className="header__contact-button" href="#contact">
-            Contact Me
+          <a
+            className="header__contact-button glow glow--hover"
+            href="#contact"
+            style={createGlowStyle()}
+          >
+            <span className="glow__content">Contact Me</span>
           </a>
           {socialLinks.map(({ label, href, Icon }) => (
             <a
               key={label}
-              className="header__social-button"
+              className="header__social-button glow glow--hover"
               href={href}
               target="_blank"
               rel="noreferrer"
               aria-label={label}
+              style={createGlowStyle()}
             >
               <Icon aria-hidden="true" />
             </a>
