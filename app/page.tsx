@@ -1,4 +1,5 @@
 import Header from "./components/Header";
+import Planet from "./components/Planet";
 
 export default function Home() {
   return (
@@ -6,6 +7,24 @@ export default function Home() {
       <Header />
 
       <main>
+        <Planet
+          className="planet--top-left"
+          radius={80}
+          opacity={0.15}
+          size={70}
+        />
+        <Planet
+          className="planet--contact"
+          radius={200}
+          opacity={0.17}
+          size={100}
+        />
+        <Planet
+          className="planet--lower-title"
+          radius={40}
+          opacity={0.11}
+          size={40}
+        />
         <section id="hero">
           <p>This is the hero section.</p>
         </section>

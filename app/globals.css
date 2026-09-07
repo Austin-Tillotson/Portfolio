@@ -136,7 +136,32 @@ button {
 }
 
 main {
+  position: relative;
+  min-height: calc(100svh - var(--header-height));
   padding-top: var(--header-height);
+  isolation: isolate;
+}
+
+main > section {
+  position: relative;
+  z-index: 1;
+}
+
+.planet.glow {
+  display: none;
+}
+
+.planet__surface {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  display: block;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at center,
+    #251d38 0 50%,
+    rgba(129, 117, 182, 0.35) 100%
+  );
 }
 
 .glow {
@@ -242,5 +267,36 @@ span.glow {
 
   .header__dropdown {
     display: none;
+  }
+
+  .planet.glow {
+    position: absolute;
+    z-index: 0;
+    display: block;
+    --planet-scale: clamp(
+      0.8,
+      calc(0.8 + ((100vw - 768px) / 232px) * 0.2),
+      1
+    );
+    width: calc(var(--planet-diameter) * var(--planet-scale));
+    aspect-ratio: 1;
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+  }
+
+  .planet--top-left {
+    top: 38%;
+    left: 18%;
+  }
+
+  .planet--contact {
+    top: 60%;
+    left: 75%;
+  }
+
+  .planet--lower-title {
+    top: 90%;
+    left: 30%;
   }
 }
