@@ -42,7 +42,9 @@ button {
   left: 0;
   height: var(--header-height);
   border-bottom: 1px solid var(--border-color);
-  background: var(--surface-color);
+  background: rgb(29 23 41 / 0.1);
+  -webkit-backdrop-filter: blur(0.5rem);
+  backdrop-filter: blur(0.5rem);
 }
 
 .header__content {
@@ -361,7 +363,7 @@ span.glow {
   }
 
   .planet--contact {
-    top: 60%;
+    top: 0%;
     left: 75%;
   }
 
