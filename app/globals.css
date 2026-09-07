@@ -205,6 +205,39 @@ span.glow {
   opacity: var(--glow-opacity);
 }
 
+.glow--pulse::before {
+  animation: glow-pulse var(--glow-pulse-duration) ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    inset: calc(var(--glow-offset) * var(--glow-pulse-size-min));
+    filter: blur(calc(var(--glow-size) * var(--glow-pulse-size-min)));
+    opacity: clamp(
+      0,
+      calc(var(--glow-opacity) * var(--glow-pulse-min)),
+      1
+    );
+  }
+
+  50% {
+    inset: calc(var(--glow-offset) * var(--glow-pulse-size-max));
+    filter: blur(calc(var(--glow-size) * var(--glow-pulse-size-max)));
+    opacity: clamp(
+      0,
+      calc(var(--glow-opacity) * var(--glow-pulse-max)),
+      1
+    );
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glow--pulse::before {
+    animation: none;
+  }
+}
+
 @media (min-width: 48rem) {
   .header__content {
     position: relative;

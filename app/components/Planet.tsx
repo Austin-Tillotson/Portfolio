@@ -5,6 +5,11 @@ type PlanetProps = {
   radius: number;
   opacity?: number;
   size?: number;
+  pulseMin?: number;
+  pulseMax?: number;
+  pulseDuration?: number;
+  pulseSizeMin?: number;
+  pulseSizeMax?: number;
   className?: string;
 };
 
@@ -12,6 +17,11 @@ export default function Planet({
   radius,
   opacity = 0.17,
   size = 100,
+  pulseMin,
+  pulseMax,
+  pulseDuration,
+  pulseSizeMin,
+  pulseSizeMax,
   className = "",
 }: PlanetProps) {
   const safeRadius = Math.max(radius, 0);
@@ -19,6 +29,11 @@ export default function Planet({
     ...createGlowStyle({
       opacity,
       size: Math.max(safeRadius * 0.25, size),
+      pulseMin,
+      pulseMax,
+      pulseDuration,
+      pulseSizeMin,
+      pulseSizeMax,
     }),
     "--planet-diameter": `${safeRadius * 2}px`,
   } as CSSProperties;
