@@ -206,10 +206,12 @@ footer {
 .shooting-star.glow {
   position: absolute;
   z-index: 1;
-  top: 50svh;
+  top: var(--shooting-star-y);
   left: 0;
   pointer-events: none;
-  animation: shooting-star-travel var(--shooting-star-duration) linear infinite;
+  animation: shooting-star-travel var(--shooting-star-duration) linear
+    var(--shooting-star-delay);
+  transform: translate(-100%, -50%);
 }
 
 .shooting-star__tail {
