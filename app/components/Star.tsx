@@ -1,4 +1,4 @@
-import type { CSSProperties } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { createGlowStyle } from "../lib/createGlowStyle";
 
 export type StarProps = {
@@ -13,6 +13,8 @@ export type StarProps = {
   pulseSizeMin?: number;
   pulseSizeMax?: number;
   className?: string;
+  children?: ReactNode;
+  style?: CSSProperties;
 };
 
 const STAR_COLOR = "#f5f1ff";
@@ -30,6 +32,8 @@ export default function Star({
   pulseSizeMin,
   pulseSizeMax,
   className = "",
+  children,
+  style,
 }: StarProps) {
   const starStyle = {
     ...createGlowStyle({
@@ -47,6 +51,7 @@ export default function Star({
     "--star-size": `${Math.max(size, 0)}px`,
     "--star-color": STAR_COLOR,
     "--star-opacity": String(STAR_OPACITY),
+    ...style,
   } as CSSProperties;
 
   return (
@@ -55,6 +60,7 @@ export default function Star({
       className={`star glow ${className}`.trim()}
       style={starStyle}
     >
+      {children}
       <span className="star__surface" />
     </span>
   );

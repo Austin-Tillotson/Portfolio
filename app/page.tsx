@@ -1,5 +1,6 @@
 import Header from "./components/Header";
 import Planet from "./components/Planet";
+import ShootingStar from "./components/ShootingStar";
 import StarField from "./components/StarField";
 
 export default function Home() {
@@ -32,6 +33,7 @@ export default function Home() {
           pulseSizeMax={1}
         />
         <StarField />
+        <ShootingStar size={10} tailLength={100} duration={10} />
         <section id="hero">
           <p>This is the hero section.</p>
         </section>

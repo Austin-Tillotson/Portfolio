@@ -203,6 +203,46 @@ footer {
   opacity: var(--star-opacity);
 }
 
+.shooting-star.glow {
+  position: absolute;
+  z-index: 1;
+  top: 50svh;
+  left: 0;
+  pointer-events: none;
+  animation: shooting-star-travel var(--shooting-star-duration) linear infinite;
+}
+
+.shooting-star__tail {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  right: calc(100% - 1px);
+  width: var(--shooting-star-tail-length);
+  height: 2px;
+  background: linear-gradient(
+    to left,
+    var(--star-color),
+    transparent
+  );
+  filter: blur(0.125rem);
+  opacity: 0.8;
+  transform: translateY(-50%);
+}
+
+.shooting-star .star__surface {
+  z-index: 2;
+}
+
+@keyframes shooting-star-travel {
+  from {
+    transform: translate(-100%, -50%);
+  }
+
+  to {
+    transform: translate(calc(100vw + 100%), -50%);
+  }
+}
+
 .glow {
   position: relative;
   isolation: isolate;
@@ -274,6 +314,11 @@ span.glow {
 @media (prefers-reduced-motion: reduce) {
   .glow--pulse::before {
     animation: none;
+  }
+
+  .shooting-star.glow {
+    animation: none;
+    transform: translate(50vw, -50%);
   }
 }
 
