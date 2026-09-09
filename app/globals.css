@@ -1,5 +1,6 @@
 :root {
-  --header-height: 5.5rem;
+  --site-bar-height: 5.5rem;
+  --header-height: var(--site-bar-height);
   --background-color: #15111f;
   --surface-color: #1d1729;
   --dropdown-color: #17121f;
@@ -34,27 +35,33 @@ button {
   font: inherit;
 }
 
+.site-bar {
+  height: var(--site-bar-height);
+  background: rgb(29 23 41 / 0.1);
+  -webkit-backdrop-filter: blur(0.5rem);
+  backdrop-filter: blur(0.5rem);
+}
+
+.site-bar__content {
+  height: 100%;
+  max-width: 75rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
 .header {
   position: fixed;
   z-index: 10;
   top: 0;
   right: 0;
   left: 0;
-  height: var(--header-height);
   border-bottom: 1px solid var(--border-color);
-  background: rgb(29 23 41 / 0.1);
-  -webkit-backdrop-filter: blur(0.5rem);
-  backdrop-filter: blur(0.5rem);
 }
 
 .header__content {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 100%;
-  max-width: 75rem;
-  margin: 0 auto;
-  padding: 0 1rem;
 }
 
 .header__title {
@@ -150,9 +157,19 @@ main > section {
   z-index: 2;
 }
 
-footer {
+.footer {
   position: relative;
   z-index: 2;
+  border-top: 1px solid var(--border-color);
+}
+
+.footer__content {
+  display: flex;
+  align-items: center;
+}
+
+.footer__content p {
+  margin: 0;
 }
 
 .planet.glow {
@@ -316,11 +333,14 @@ span.glow {
 }
 
 @media (min-width: 48rem) {
+  .site-bar__content {
+    padding: 0 2rem;
+  }
+
   .header__content {
     position: relative;
     justify-content: flex-start;
     gap: 2rem;
-    padding: 0 2rem;
   }
 
   .header__nav {

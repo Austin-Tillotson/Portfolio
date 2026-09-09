@@ -30,8 +30,8 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="header">
-      <div className="header__content">
+    <header className="header site-bar">
+      <div className="header__content site-bar__content">
         <a
           className={`header__title glow glow--hover ${unbounded.className}`}
           href="#hero"

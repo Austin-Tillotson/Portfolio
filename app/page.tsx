@@ -1,3 +1,4 @@
+import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Planet from "./components/Planet";
 import ShootingStarManager from "./components/ShootingStarManager";
@@ -47,9 +48,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer>
-        <p>Portfolio footer.</p>
-      </footer>
+      <Footer />
     </>
   );
 }
