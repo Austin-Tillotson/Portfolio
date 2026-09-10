@@ -14,6 +14,11 @@ export type ShootingStarPoint = {
   y: number;
 };
 
+export type ShootingStarBounds = {
+  width: number;
+  height: number;
+};
+
 type PixelPoint = {
   x: number;
   y: number;
@@ -26,6 +31,7 @@ type ShootingStarProps = {
   tailLength?: number;
   opacityFadeEnd?: number;
   curveDirection?: -1 | 1;
+  bounds: ShootingStarBounds;
   duration?: number;
   delay?: number;
 };
@@ -126,14 +132,11 @@ export default function ShootingStar({
   tailLength = 9 * 16,
   opacityFadeEnd = 100,
   curveDirection = 1,
+  bounds,
   duration = 4,
   delay = 0,
 }: ShootingStarProps) {
   const trailGradientId = useId().replace(/:/g, "");
-  const [viewport, setViewport] = useState<{
-    width: number;
-    height: number;
-  } | null>(null);
   const safeStart = {
     x: clamp(start.x, -20, 120),
     y: clamp(start.y, -20, 120),
@@ -144,32 +147,14 @@ export default function ShootingStar({
   };
   const safeOpacityFadeEnd = clamp(opacityFadeEnd, 55, 100);
 
-  useEffect(() => {
-    const updateViewport = () => {
-      setViewport({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
-    };
-
-    updateViewport();
-    window.addEventListener("resize", updateViewport);
-
-    return () => window.removeEventListener("resize", updateViewport);
-  }, []);
-
   const curve = useMemo(() => {
-    if (viewport === null) {
-      return null;
-    }
-
     const startPoint = {
-      x: (safeStart.x / 100) * viewport.width,
-      y: (safeStart.y / 100) * viewport.height,
+      x: (safeStart.x / 100) * bounds.width,
+      y: (safeStart.y / 100) * bounds.height,
     };
     const endPoint = {
-      x: (safeEnd.x / 100) * viewport.width,
-      y: (safeEnd.y / 100) * viewport.height,
+      x: (safeEnd.x / 100) * bounds.width,
+      y: (safeEnd.y / 100) * bounds.height,
     };
     const pathVector = {
       x: endPoint.x - startPoint.x,
@@ -196,16 +181,16 @@ export default function ShootingStar({
       control: controlPoint,
       end: endPoint,
       length: getCurveLength(startPoint, controlPoint, endPoint),
-      viewport,
+      bounds,
     };
   }, [
+    bounds,
     curveDirection,
     duration,
     safeEnd.x,
     safeEnd.y,
     safeStart.x,
     safeStart.y,
-    viewport,
   ]);
 
   const [motion, setMotion] = useState<ShootingStarMotion | null>(null);
@@ -273,7 +258,7 @@ export default function ShootingStar({
     return () => window.cancelAnimationFrame(animationFrame);
   }, [curve, delay, duration, safeOpacityFadeEnd, tailLength]);
 
-  if (curve === null || motion === null) {
+  if (motion === null) {
     return null;
   }
 
@@ -291,7 +276,7 @@ export default function ShootingStar({
         height="100%"
         preserveAspectRatio="none"
         style={{ opacity: motion.opacity }}
-        viewBox={`0 0 ${curve.viewport.width} ${curve.viewport.height}`}
+        viewBox={`0 0 ${curve.bounds.width} ${curve.bounds.height}`}
         width="100%"
       >
         <defs>

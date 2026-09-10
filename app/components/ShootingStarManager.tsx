@@ -1,7 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import ShootingStar, { type ShootingStarPoint } from "./ShootingStar";
+import { useEffect, useRef, useState } from "react";
+import ShootingStar, {
+  type ShootingStarBounds,
+  type ShootingStarPoint,
+} from "./ShootingStar";
 
 type ManagedShootingStar = {
   id: string;
@@ -161,7 +164,8 @@ function createShootingStarSettings(): ShootingStarSettings {
 function ManagedShootingStar({
   initialTimeout,
   timeout,
-}: ManagedShootingStar) {
+  bounds,
+}: ManagedShootingStar & { bounds: ShootingStarBounds }) {
   const [run, setRun] = useState(0);
   const [settings, setSettings] = useState<ShootingStarSettings | null>(null);
 
@@ -202,6 +206,7 @@ function ManagedShootingStar({
       tailLength={settings.tailLength}
       opacityFadeEnd={settings.opacityFadeEnd}
       curveDirection={settings.curveDirection}
+      bounds={bounds}
       duration={settings.duration}
       delay={run === 0 ? initialTimeout : 0}
     />
@@ -209,11 +214,40 @@ function ManagedShootingStar({
 }
 
 export default function ShootingStarManager() {
+  const managerRef = useRef<HTMLDivElement>(null);
+  const [bounds, setBounds] = useState<ShootingStarBounds | null>(null);
+
+  useEffect(() => {
+    const manager = managerRef.current;
+
+    if (manager === null) {
+      return;
+    }
+
+    const updateBounds = () => {
+      setBounds({
+        width: manager.clientWidth,
+        height: manager.clientHeight,
+      });
+    };
+
+    updateBounds();
+    const resizeObserver = new ResizeObserver(updateBounds);
+    resizeObserver.observe(manager);
+
+    return () => resizeObserver.disconnect();
+  }, []);
+
   return (
-    <div aria-hidden="true" className="shooting-star-manager">
-      {SHOOTING_STARS.map((star) => (
-        <ManagedShootingStar key={star.id} {...star} />
-      ))}
+    <div
+      aria-hidden="true"
+      className="shooting-star-manager"
+      ref={managerRef}
+    >
+      {bounds !== null &&
+        SHOOTING_STARS.map((star) => (
+          <ManagedShootingStar key={star.id} {...star} bounds={bounds} />
+        ))}
     </div>
   );
 }

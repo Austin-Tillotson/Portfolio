@@ -41,5 +41,11 @@ export default function StarField() {
     setStars(generatedStars.current);
   }, []);
 
-  return stars.map(({ id, ...star }) => <Star key={id} {...star} />);
+  return (
+    <div aria-hidden="true" className="star-field">
+      {stars.map(({ id, ...star }) => (
+        <Star key={id} {...star} />
+      ))}
+    </div>
+  );
 }
