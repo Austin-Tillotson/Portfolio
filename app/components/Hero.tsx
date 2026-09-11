@@ -2,11 +2,11 @@ import Image from "next/image";
 import { createGlowStyle } from "../lib/createGlowStyle";
 
 const heroGlowStyle = createGlowStyle({
-  opacity: 0.09,
-  size: 50,
-  ellipseWidth: "130%",
+  opacity: 0.08,
+  size: 30,
+  ellipseWidth: "90%",
   ellipseHeight: "80%",
-  rotation: -29,
+  rotation: -10,
 });
 
 export default function Hero() {
@@ -25,9 +25,13 @@ export default function Hero() {
           />
         </div>
 
-        <div className="hero__copy glow glow--ellipse" style={heroGlowStyle}>
-          <p className="hero__software">Software</p>
-          <h1 className="hero__engineer">Engineer</h1>
+        <div className="hero__copy">
+          <div className="hero__title glow glow--ellipse" style={heroGlowStyle}>
+            <h1>
+              <span className="hero__software">Software</span>
+              <span className="hero__engineer">Engineer</span>
+            </h1>
+          </div>
           <p className="hero__paragraph">
             Taking Ideas and Designs and bringing them to Life through
             Responsive Frontend with React, JavaScript, and TypeScript.
