@@ -1,5 +1,6 @@
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import Hero from "./components/Hero";
 import Planet from "./components/Planet";
 import ShootingStarManager from "./components/ShootingStarManager";
 import StarField from "./components/StarField";
@@ -35,15 +36,13 @@ export default function Home() {
         />
         <StarField />
         <ShootingStarManager />
-        <section id="hero">
-          <p>This is the hero section.</p>
-        </section>
+        <Hero />
 
-        <section id="projects">
+        <section className="content-section content-section--projects" id="projects">
           <p>This is the projects section.</p>
         </section>
 
-        <section id="contact">
+        <section className="content-section content-section--contact" id="contact">
           <p>This is the contact section.</p>
         </section>
       </main>

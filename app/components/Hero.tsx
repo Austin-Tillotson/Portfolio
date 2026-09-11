@@ -1,0 +1,45 @@
+import Image from "next/image";
+import { createGlowStyle } from "../lib/createGlowStyle";
+
+const heroGlowStyle = createGlowStyle({
+  opacity: 0.09,
+  size: 50,
+  ellipseWidth: "130%",
+  ellipseHeight: "80%",
+  rotation: -29,
+});
+
+export default function Hero() {
+  return (
+    <section className="hero" id="hero">
+      <div className="hero__content">
+        <div className="hero__image-container">
+          <Image
+            alt="Austin Tillotson"
+            className="hero__image"
+            height={2208}
+            priority
+            sizes="(min-width: 48rem) 40vw, 100vw"
+            src="/self.jpg"
+            width={2944}
+          />
+        </div>
+
+        <div className="hero__copy glow glow--ellipse" style={heroGlowStyle}>
+          <p className="hero__software">Software</p>
+          <h1 className="hero__engineer">Engineer</h1>
+          <p className="hero__paragraph">
+            Taking Ideas and Designs and bringing them to Life through
+            Responsive Frontend with React, JavaScript, and TypeScript.
+          </p>
+          <p className="hero__paragraph">
+            Greetings, I am Austin Tillotson, a Software Engineer who excels in 
+            developing responsive and visually appealing web applications. 
+            With a strong passion for frontend development, my goal is to transform 
+            ideas and designs into seamless digital experiences that engage users and drive results.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}

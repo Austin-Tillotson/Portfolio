@@ -4,6 +4,9 @@ type GlowOptions = {
   color?: string;
   opacity?: number;
   size?: number;
+  ellipseWidth?: string;
+  ellipseHeight?: string;
+  rotation?: number;
   pulseMin?: number;
   pulseMax?: number;
   pulseDuration?: number;
@@ -24,6 +27,9 @@ export function createGlowStyle({
   color = DEFAULT_COLOR,
   opacity = DEFAULT_OPACITY,
   size = DEFAULT_SIZE,
+  ellipseWidth = "100%",
+  ellipseHeight = "100%",
+  rotation = 0,
   pulseMin = DEFAULT_PULSE_MIN,
   pulseMax = DEFAULT_PULSE_MAX,
   pulseDuration = DEFAULT_PULSE_DURATION,
@@ -35,6 +41,9 @@ export function createGlowStyle({
     "--glow-opacity": String(Math.min(Math.max(opacity, 0), 1)),
     "--glow-size": `${Math.max(size, 0)}px`,
     "--glow-offset": `-${Math.max(size, 0)}px`,
+    "--glow-ellipse-width": ellipseWidth,
+    "--glow-ellipse-height": ellipseHeight,
+    "--glow-rotation": `${rotation}deg`,
     "--glow-pulse-min": String(Math.max(pulseMin, 0)),
     "--glow-pulse-max": String(Math.max(pulseMax, 0)),
     "--glow-pulse-duration": `${Math.max(pulseDuration, 0)}s`,
