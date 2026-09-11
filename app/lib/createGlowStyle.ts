@@ -4,6 +4,8 @@ type GlowOptions = {
   color?: string;
   opacity?: number;
   size?: number;
+  edgeFade?: number;
+  roundness?: number;
   ellipseWidth?: string;
   ellipseHeight?: string;
   rotation?: number;
@@ -27,6 +29,8 @@ export function createGlowStyle({
   color = DEFAULT_COLOR,
   opacity = DEFAULT_OPACITY,
   size = DEFAULT_SIZE,
+  edgeFade = 0,
+  roundness = 0,
   ellipseWidth = "100%",
   ellipseHeight = "100%",
   rotation = 0,
@@ -36,11 +40,21 @@ export function createGlowStyle({
   pulseSizeMin = DEFAULT_PULSE_SIZE_MIN,
   pulseSizeMax = DEFAULT_PULSE_SIZE_MAX,
 }: GlowOptions = {}): CSSProperties {
+  const safeEdgeFade = Math.min(Math.max(edgeFade, 0), 1);
+  const safeRoundness = Math.min(Math.max(roundness, 0), 1);
+  const glowBackground =
+    safeEdgeFade === 0
+      ? color
+      : `radial-gradient(ellipse at center, ${color} 0%, ${color} ${(1 - safeEdgeFade) * 100}%, transparent 100%)`;
+
   return {
     "--glow-color": color,
+    "--glow-background": glowBackground,
     "--glow-opacity": String(Math.min(Math.max(opacity, 0), 1)),
     "--glow-size": `${Math.max(size, 0)}px`,
     "--glow-offset": `-${Math.max(size, 0)}px`,
+    "--glow-border-radius":
+      safeRoundness === 0 ? "inherit" : `${safeRoundness * 50}%`,
     "--glow-ellipse-width": ellipseWidth,
     "--glow-ellipse-height": ellipseHeight,
     "--glow-rotation": `${rotation}deg`,

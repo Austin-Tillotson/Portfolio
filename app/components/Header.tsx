@@ -35,7 +35,7 @@ export default function Header() {
         <a
           className={`header__title glow glow--hover ${unbounded.className}`}
           href="#hero"
-          style={createGlowStyle()}
+          style={createGlowStyle({ edgeFade: 0.5, roundness: 0.6 })}
         >
           <span className="glow__content">Austin Tillotson</span>
         </a>
@@ -46,7 +46,7 @@ export default function Header() {
               key={label}
               className="header__nav-link glow glow--hover"
               href={href}
-              style={createGlowStyle()}
+              style={createGlowStyle({ edgeFade: 0.7, roundness: 0.3 })}
             >
               <span className="header__nav-link-label">{label}</span>
             </a>

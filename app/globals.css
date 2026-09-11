@@ -406,8 +406,8 @@ span.glow {
   position: absolute;
   z-index: 0;
   inset: var(--glow-offset);
-  border-radius: inherit;
-  background: var(--glow-color);
+  border-radius: var(--glow-border-radius);
+  background: var(--glow-background);
   content: "";
   filter: blur(var(--glow-size));
   opacity: var(--glow-opacity);
