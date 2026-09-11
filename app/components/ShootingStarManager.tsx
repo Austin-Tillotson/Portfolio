@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import ShootingStar, {
   type ShootingStarBounds,
   type ShootingStarPoint,
@@ -55,6 +55,7 @@ type ShootingStarSettings = {
   curveDirection: -1 | 1;
   start: ShootingStarPoint;
   end: ShootingStarPoint;
+  originY: number;
 };
 
 type CardinalDirection = "north" | "south" | "east" | "west";
@@ -135,7 +136,7 @@ function createShootingStarPath() {
   return { start, end };
 }
 
-function createShootingStarSettings(): ShootingStarSettings {
+function createShootingStarSettings(originY: number): ShootingStarSettings {
   const { start, end } = createShootingStarPath();
 
   return {
@@ -158,6 +159,7 @@ function createShootingStarSettings(): ShootingStarSettings {
     curveDirection: Math.random() < 0.5 ? -1 : 1,
     start,
     end,
+    originY,
   };
 }
 
@@ -165,17 +167,21 @@ function ManagedShootingStar({
   initialTimeout,
   timeout,
   bounds,
-}: ManagedShootingStar & { bounds: ShootingStarBounds }) {
+  getOriginY,
+}: ManagedShootingStar & {
+  bounds: ShootingStarBounds;
+  getOriginY: () => number;
+}) {
   const [run, setRun] = useState(0);
   const [settings, setSettings] = useState<ShootingStarSettings | null>(null);
 
   useEffect(() => {
     const timer = window.setTimeout(() => {
-      setSettings(createShootingStarSettings());
+      setSettings(createShootingStarSettings(getOriginY()));
     }, 0);
 
     return () => window.clearTimeout(timer);
-  }, []);
+  }, [getOriginY]);
 
   useEffect(() => {
     if (settings === null) {
@@ -186,12 +192,12 @@ function ManagedShootingStar({
     const restartDelay =
       delayBeforeRun + settings.duration * 1_000 + timeout;
     const timer = window.setTimeout(() => {
-      setSettings(createShootingStarSettings());
+      setSettings(createShootingStarSettings(getOriginY()));
       setRun((currentRun) => currentRun + 1);
     }, restartDelay);
 
     return () => window.clearTimeout(timer);
-  }, [initialTimeout, run, settings, timeout]);
+  }, [getOriginY, initialTimeout, run, settings, timeout]);
 
   if (settings === null) {
     return null;
@@ -209,6 +215,7 @@ function ManagedShootingStar({
       bounds={bounds}
       duration={settings.duration}
       delay={run === 0 ? initialTimeout : 0}
+      originY={settings.originY}
     />
   );
 }
@@ -217,25 +224,32 @@ export default function ShootingStarManager() {
   const managerRef = useRef<HTMLDivElement>(null);
   const [bounds, setBounds] = useState<ShootingStarBounds | null>(null);
 
-  useEffect(() => {
+  const getOriginY = useCallback(() => {
     const manager = managerRef.current;
 
-    if (manager === null) {
-      return;
-    }
+    return manager === null ? 0 : Math.max(0, -manager.getBoundingClientRect().top);
+  }, []);
 
+  useEffect(() => {
     const updateBounds = () => {
-      setBounds({
-        width: manager.clientWidth,
-        height: manager.clientHeight,
+      const nextBounds = {
+        width: window.innerWidth,
+        height: window.innerHeight,
+      };
+
+      setBounds((currentBounds) => {
+        if (currentBounds?.width === nextBounds.width) {
+          return currentBounds;
+        }
+
+        return nextBounds;
       });
     };
 
     updateBounds();
-    const resizeObserver = new ResizeObserver(updateBounds);
-    resizeObserver.observe(manager);
+    window.addEventListener("resize", updateBounds);
 
-    return () => resizeObserver.disconnect();
+    return () => window.removeEventListener("resize", updateBounds);
   }, []);
 
   return (
@@ -246,7 +260,12 @@ export default function ShootingStarManager() {
     >
       {bounds !== null &&
         SHOOTING_STARS.map((star) => (
-          <ManagedShootingStar key={star.id} {...star} bounds={bounds} />
+          <ManagedShootingStar
+            key={star.id}
+            {...star}
+            bounds={bounds}
+            getOriginY={getOriginY}
+          />
         ))}
     </div>
   );

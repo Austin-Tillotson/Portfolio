@@ -36,8 +36,8 @@ export default function Home() {
             pulseSizeMax={1}
           />
           <StarField />
+          <ShootingStarManager />
         </div>
-        <ShootingStarManager />
         <Hero />
 
         <section className="content-section content-section--projects" id="projects">

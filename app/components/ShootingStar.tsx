@@ -34,6 +34,7 @@ type ShootingStarProps = {
   bounds: ShootingStarBounds;
   duration?: number;
   delay?: number;
+  originY: number;
 };
 
 type ShootingStarMotion = {
@@ -135,6 +136,7 @@ export default function ShootingStar({
   bounds,
   duration = 4,
   delay = 0,
+  originY,
 }: ShootingStarProps) {
   const trailGradientId = useId().replace(/:/g, "");
   const safeStart = {
@@ -268,8 +270,14 @@ export default function ShootingStar({
     opacity: motion.opacity,
   } as CSSProperties;
 
+  const shootingStarFrameStyle = {
+    width: `${bounds.width}px`,
+    height: `${bounds.height}px`,
+    transform: `translateY(${originY}px)`,
+  } as CSSProperties;
+
   return (
-    <>
+    <div className="shooting-star__frame" style={shootingStarFrameStyle}>
       <svg
         aria-hidden="true"
         className="shooting-star__trail"
@@ -308,6 +316,6 @@ export default function ShootingStar({
         glowSize={Math.max(size * 0.5, 4)}
         style={shootingStarStyle}
       />
-    </>
+    </div>
   );
 }

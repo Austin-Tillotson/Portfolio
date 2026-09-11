@@ -347,9 +347,17 @@ main > section {
 }
 
 .shooting-star-manager {
-  position: fixed;
+  position: absolute;
   z-index: 1;
   inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.shooting-star__frame {
+  position: absolute;
+  top: 0;
+  left: 0;
   overflow: hidden;
   pointer-events: none;
 }
