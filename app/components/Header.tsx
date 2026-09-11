@@ -55,11 +55,10 @@ export default function Header() {
 
         <div className="header__actions">
           <a
-            className="header__contact-button glow glow--hover"
+            className="header__contact-button"
             href="#contact"
-            style={createGlowStyle()}
           >
-            <span className="glow__content">Contact Me</span>
+            Contact Me
           </a>
           {socialLinks.map(({ label, href, Icon }) => (
             <a
