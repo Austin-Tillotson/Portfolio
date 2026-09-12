@@ -19,7 +19,7 @@ export default function Hero() {
             className="hero__image"
             height={2208}
             priority
-            sizes="(max-width: 375px) 80vw, (max-width: 550px) 70vw, 24rem"
+            sizes="(max-width: 375px) 80vw, (max-width: 550px) 70vw, (max-width: 767px) 24rem, (max-width: 1200px) calc(44.44vw - 5.33rem), 28rem"
             src="/self.jpg"
             width={2944}
           />

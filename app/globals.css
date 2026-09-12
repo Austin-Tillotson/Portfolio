@@ -489,6 +489,29 @@ span.glow {
 }
 
 @media (min-width: 48rem) {
+  .hero__content {
+    grid-template-columns:
+      minmax(0, 1fr)
+      clamp(18rem, calc(44.44vw - 5.33rem), 35rem);
+    align-items: center;
+    gap: clamp(2rem, 6vw, 6rem);
+  }
+
+  .hero__copy {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .hero__image-container {
+    grid-column: 2;
+    grid-row: 1;
+    width: clamp(18rem, calc(44.44vw - 5.33rem), 28rem);
+  }
+
+  .hero__software {
+    font-size: clamp(4rem, 7vw, 6.5rem);
+  }
+
   .site-bar__content {
     padding: 0 2rem;
   }
