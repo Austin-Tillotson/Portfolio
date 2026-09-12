@@ -1,3 +1,4 @@
+import Card from "./components/Card";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
@@ -41,7 +42,9 @@ export default function Home() {
         <Hero />
 
         <section className="content-section content-section--projects" id="projects">
-          <p>This is the projects section.</p>
+          <div className="project-grid">
+            <Card />
+          </div>
         </section>
 
         <section className="content-section content-section--contact" id="contact">

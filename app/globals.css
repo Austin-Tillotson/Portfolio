@@ -186,6 +186,22 @@ main > section {
   margin: 0;
 }
 
+.project-grid {
+  display: grid;
+  width: min(100%, 75rem);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  min-height: 18rem;
+  border: 1px solid rgb(56 45 75 / 0.7);
+  border-radius: 1rem;
+  background: rgb(12 9 19 / 0.7);
+  -webkit-backdrop-filter: blur(0.75rem);
+  backdrop-filter: blur(0.75rem);
+}
+
 .hero {
   display: grid;
   align-items: center;
