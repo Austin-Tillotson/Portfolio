@@ -1,8 +1,8 @@
-import Card from "./components/Card";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import Planet from "./components/Planet";
+import ProjectCard from "./components/ProjectCard";
 import ShootingStarManager from "./components/ShootingStarManager";
 import StarField from "./components/StarField";
 
@@ -43,7 +43,8 @@ export default function Home() {
 
         <section className="content-section content-section--projects" id="projects">
           <div className="project-grid">
-            <Card />
+            <ProjectCard />
+            <ProjectCard />
           </div>
         </section>
 
