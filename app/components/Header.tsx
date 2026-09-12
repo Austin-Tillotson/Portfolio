@@ -30,8 +30,9 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="header site-bar">
-      <div className="header__content site-bar__content">
+    <>
+      <header className="header site-bar">
+        <div className="header__content site-bar__content">
         <a
           className={`header__title glow glow--hover ${unbounded.className}`}
           href="#hero"
@@ -85,7 +86,8 @@ export default function Header() {
         >
           {isMenuOpen ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
         </button>
-      </div>
+        </div>
+      </header>
 
       {isMenuOpen && (
         <div id="mobile-menu" className="header__dropdown">
@@ -114,6 +116,6 @@ export default function Header() {
           </div>
         </div>
       )}
-    </header>
+    </>
   );
 }
