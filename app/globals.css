@@ -205,7 +205,8 @@ main > section {
   margin: 0;
 }
 
-.content-section--projects {
+.content-section--projects,
+.content-section--contact {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -333,6 +334,96 @@ main > section {
   color: var(--accent-color);
   font-size: 0.875rem;
   text-align: center;
+}
+
+.contact-card {
+  width: 100%;
+}
+
+.contact-form {
+  display: grid;
+  gap: 1rem;
+  padding: 1.5rem;
+  text-align: left;
+}
+
+.contact-form__field {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.contact-form__label {
+  color: var(--accent-color);
+  font-weight: 700;
+}
+
+.contact-form__input {
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  background: rgb(12 9 19 / 0.7);
+  color: var(--text-color);
+  font: inherit;
+}
+
+.contact-form__input:focus {
+  border-color: var(--accent-color);
+  outline: none;
+  box-shadow: 0 0 0.75rem rgb(196 181 253 / 0.3);
+}
+
+.contact-form__input--error,
+.contact-form__input--error:focus {
+  border-color: #f87171;
+  box-shadow: 0 0 0.75rem rgb(248 113 113 / 0.35);
+}
+
+.contact-form__input::selection {
+  background: rgb(196 181 253 / 0.6);
+  color: #1a1325;
+  text-shadow: 0 0 0.4rem rgb(245 241 255 / 0.7);
+}
+
+.contact-form__input--message {
+  min-height: 10rem;
+  resize: vertical;
+}
+
+.contact-form__errors {
+  display: grid;
+  gap: 0.25rem;
+  min-height: 3.125rem;
+}
+
+.contact-form__error {
+  margin: 0;
+  color: #fca5a5;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  visibility: hidden;
+}
+
+.contact-form__error--visible {
+  visibility: visible;
+}
+
+.contact-form__submit {
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0 1.25rem;
+  border: 0;
+  border-radius: 0.75rem;
+  background: var(--accent-color);
+  color: #1a1325;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+}
+
+.contact-form__submit:hover {
+  background: var(--accent-hover-color);
 }
 
 .hero {
@@ -642,6 +733,10 @@ span.glow {
 }
 
 @media (min-width: 48rem) {
+  .contact-card {
+    max-width: 40rem;
+  }
+
   .hero__content {
     grid-template-columns:
       minmax(0, 1fr)

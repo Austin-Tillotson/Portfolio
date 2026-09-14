@@ -3,6 +3,7 @@ import applecartScreenshot from "../public/ApplecartUI.png";
 import balancePointScreenshot from "../public/BalancePoint.png";
 import codeSwitcherScreenshot from "../public/CodeSwitcher.png";
 import passPointScreenshot from "../public/PassPoint.png";
+import ContactForm from "./components/ContactForm";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
@@ -109,7 +110,8 @@ export default function Home() {
         </section>
 
         <section className="content-section content-section--contact" id="contact">
-          <p>This is the contact section.</p>
+          <h2 className="content-section__title">Contact Me</h2>
+          <ContactForm />
         </section>
       </main>
 
