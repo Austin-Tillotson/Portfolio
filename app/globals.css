@@ -732,6 +732,21 @@ span.glow {
   }
 }
 
+@media (max-width: 22rem) {
+  .project-card__header {
+    flex-wrap: wrap;
+  }
+
+  .project-card__title,
+  .project-card__actions {
+    width: 100%;
+  }
+
+  .project-card__actions {
+    justify-content: flex-start;
+  }
+}
+
 @media (min-width: 48rem) {
   .contact-card {
     max-width: 40rem;
