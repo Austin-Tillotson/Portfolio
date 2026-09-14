@@ -9,6 +9,11 @@ type FormErrors = {
   missingFields: string[];
 };
 
+type SubmissionStatus = {
+  message: string;
+  type: "error" | "success" | null;
+};
+
 function createMissingFieldsMessage(fields: string[]) {
   if (fields.length === 0) {
     return "";
@@ -29,11 +34,17 @@ export default function ContactForm() {
     invalidEmail: false,
     missingFields: [],
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submissionStatus, setSubmissionStatus] = useState<SubmissionStatus>({
+    message: "",
+    type: null,
+  });
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    const formData = new FormData(event.currentTarget);
+    const form = event.currentTarget;
+    const formData = new FormData(form);
     const name = formData.get("name")?.toString().trim() ?? "";
     const email = formData.get("email")?.toString().trim() ?? "";
     const message = formData.get("message")?.toString().trim() ?? "";
@@ -46,6 +57,43 @@ export default function ContactForm() {
       email !== "" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
     setErrors({ invalidEmail, missingFields });
+
+    if (missingFields.length > 0 || invalidEmail) {
+      setSubmissionStatus({ message: "", type: null });
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmissionStatus({ message: "", type: null });
+
+    try {
+      const response = await fetch("/api/contact", {
+        body: JSON.stringify({ email, message, name }),
+        headers: { "Content-Type": "application/json" },
+        method: "POST",
+      });
+      const data = (await response.json()) as { error?: string; message?: string };
+
+      if (!response.ok) {
+        throw new Error(data.error ?? "Your message could not be sent. Please try again shortly.");
+      }
+
+      form.reset();
+      setSubmissionStatus({
+        message: data.message ?? "Thanks — your message has been sent.",
+        type: "success",
+      });
+    } catch (error) {
+      setSubmissionStatus({
+        message:
+          error instanceof Error
+            ? error.message
+            : "Your message could not be sent. Please try again shortly.",
+        type: "error",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   const missingFieldsMessage = createMissingFieldsMessage(errors.missingFields);
@@ -107,8 +155,14 @@ export default function ContactForm() {
             {errorMessages[1]}
           </p>
         </div>
-        <button className="contact-form__submit" type="submit">
-          Contact Me
+        <p
+          aria-live="polite"
+          className={`contact-form__submission-status${submissionStatus.type ? ` contact-form__submission-status--${submissionStatus.type}` : ""}`}
+        >
+          {submissionStatus.message}
+        </p>
+        <button className="contact-form__submit" disabled={isSubmitting} type="submit">
+          {isSubmitting ? "Sending..." : "Contact Me"}
         </button>
       </form>
     </Card>
