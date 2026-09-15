@@ -122,6 +122,25 @@ button {
   color: #1a1325;
 }
 
+.action-link {
+  display: inline-grid;
+  min-height: 3rem;
+  padding: 0.5rem 1rem;
+  place-items: center;
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  background: var(--surface-hover-color);
+  color: var(--text-color);
+  font-weight: 700;
+  text-align: center;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.action-link:hover {
+  background: var(--accent-color);
+  color: #1a1325;
+}
+
 .header__dropdown {
   position: fixed;
   z-index: 9;
@@ -504,6 +523,17 @@ button {
 
 .hero__paragraph + .hero__paragraph {
   margin-top: 3rem;
+}
+
+.hero__about-link {
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.about-page__content {
+  display: grid;
+  justify-items: center;
+  gap: 2rem;
 }
 
 .hero__image-container {

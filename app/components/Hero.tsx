@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { createGlowStyle } from "../lib/createGlowStyle";
 
 const heroGlowStyle = createGlowStyle({
@@ -42,6 +43,9 @@ export default function Hero() {
             With a strong passion for frontend development, my goal is to transform 
             ideas and designs into seamless digital experiences that engage users and drive results.
           </p>
+          <Link className="action-link hero__about-link" href="/about">
+            Learn More About Me
+          </Link>
         </div>
       </div>
     </section>
