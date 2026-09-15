@@ -1,16 +1,11 @@
 import type { StaticImageData } from "next/image";
-import applecartScreenshot from "../public/ApplecartUI.png";
-import balancePointScreenshot from "../public/BalancePoint.png";
-import codeSwitcherScreenshot from "../public/CodeSwitcher.png";
-import passPointScreenshot from "../public/PassPoint.png";
-import ContactForm from "./components/ContactForm";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import Hero from "./components/Hero";
-import Planet from "./components/Planet";
-import ProjectCard from "./components/ProjectCard";
-import ShootingStarManager from "./components/ShootingStarManager";
-import StarField from "./components/StarField";
+import applecartScreenshot from "../../public/ApplecartUI.png";
+import balancePointScreenshot from "../../public/BalancePoint.png";
+import codeSwitcherScreenshot from "../../public/CodeSwitcher.png";
+import passPointScreenshot from "../../public/PassPoint.png";
+import ContactForm from "../components/ContactForm";
+import Hero from "../components/Hero";
+import ProjectCard from "../components/ProjectCard";
 
 type Project = {
   description: string;
@@ -59,63 +54,30 @@ const projects: Project[] = [
 export default function Home() {
   return (
     <>
-      <Header />
+      <Hero />
 
-      <main>
-        <div aria-hidden="true" className="space-scene">
-          <Planet
-            className="planet--top-left glow--pulse"
-            radius={80}
-            opacity={0.15}
-            size={70}
-            pulseDuration={10}
-          />
-          <Planet
-            className="planet--contact glow--pulse"
-            radius={200}
-            opacity={0.17}
-            size={100}
-            pulseDuration={15}
-          />
-          <Planet
-            className="planet--lower-title glow--pulse"
-            radius={40}
-            opacity={0.11}
-            size={40}
-            pulseDuration={5}
-            pulseSizeMin={1}
-            pulseSizeMax={1}
-          />
-          <StarField />
-          <ShootingStarManager />
+      <section className="content-section content-section--projects" id="projects">
+        <h2 className="content-section__title">Projects</h2>
+        <div className="project-grid">
+          {projects.map((project) => (
+            <ProjectCard
+              description={project.description}
+              githubUrl={project.githubUrl}
+              imageAlt={`${project.name} project screenshot`}
+              imageSrc={project.screenshot}
+              key={project.name}
+              skills={project.skills}
+              title={project.name}
+              vercelUrl={project.vercelUrl}
+            />
+          ))}
         </div>
-        <Hero />
+      </section>
 
-        <section className="content-section content-section--projects" id="projects">
-          <h2 className="content-section__title">Projects</h2>
-          <div className="project-grid">
-            {projects.map((project) => (
-              <ProjectCard
-                description={project.description}
-                githubUrl={project.githubUrl}
-                imageAlt={`${project.name} project screenshot`}
-                imageSrc={project.screenshot}
-                key={project.name}
-                skills={project.skills}
-                title={project.name}
-                vercelUrl={project.vercelUrl}
-              />
-            ))}
-          </div>
-        </section>
-
-        <section className="content-section content-section--contact" id="contact">
-          <h2 className="content-section__title">Contact Me</h2>
-          <ContactForm />
-        </section>
-      </main>
-
-      <Footer />
+      <section className="content-section content-section--contact" id="contact">
+        <h2 className="content-section__title">Contact Me</h2>
+        <ContactForm />
+      </section>
     </>
   );
 }

@@ -163,7 +163,7 @@ button {
   gap: 0.5rem;
 }
 
-main {
+.site-main {
   position: relative;
   min-height: calc(100svh - var(--header-height));
   padding-top: var(--header-height);
@@ -171,7 +171,7 @@ main {
   overflow-x: clip;
 }
 
-main > section {
+.site-main__content {
   position: relative;
   z-index: 2;
 }

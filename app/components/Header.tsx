@@ -1,6 +1,7 @@
 "use client";
 
 import { Menu, X } from "lucide-react";
+import Link from "next/link";
 import { Unbounded } from "next/font/google";
 import { useState } from "react";
 import { FaGithub, FaLinkedin } from "react-icons/fa6";
@@ -22,8 +23,8 @@ const socialLinks = [
 ];
 
 const navigationLinks = [
-  { label: "Projects", href: "#projects" },
-  { label: "Contact", href: "#contact" },
+  { label: "Projects", href: "/#projects" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export default function Header() {
@@ -33,34 +34,34 @@ export default function Header() {
     <>
       <header className="header site-bar">
         <div className="header__content site-bar__content">
-        <a
+        <Link
           className={`header__title glow glow--hover ${unbounded.className}`}
-          href="#hero"
+          href="/#hero"
           style={createGlowStyle({ edgeFade: 0.5, roundness: 0.6 })}
         >
           <span className="glow__content">Austin Tillotson</span>
-        </a>
+        </Link>
 
         <nav className="header__nav" aria-label="Main navigation">
           {navigationLinks.map(({ label, href }) => (
-            <a
+            <Link
               key={label}
               className="header__nav-link glow glow--hover"
               href={href}
               style={createGlowStyle({ edgeFade: 0.7, roundness: 0.3 })}
             >
               <span className="header__nav-link-label">{label}</span>
-            </a>
+            </Link>
           ))}
         </nav>
 
         <div className="header__actions">
-          <a
+          <Link
             className="header__contact-button"
-            href="#contact"
+            href="/#contact"
           >
             Contact Me
-          </a>
+          </Link>
           {socialLinks.map(({ label, href, Icon }) => (
             <a
               key={label}
@@ -92,12 +93,12 @@ export default function Header() {
       {isMenuOpen && (
         <div id="mobile-menu" className="header__dropdown">
           <nav className="header__mobile-nav" aria-label="Mobile navigation">
-            <a className="header__mobile-link" href="#projects" onClick={() => setIsMenuOpen(false)}>
+            <Link className="header__mobile-link" href="/#projects" onClick={() => setIsMenuOpen(false)}>
               Projects
-            </a>
-            <a className="header__mobile-link" href="#contact" onClick={() => setIsMenuOpen(false)}>
+            </Link>
+            <Link className="header__mobile-link" href="/#contact" onClick={() => setIsMenuOpen(false)}>
               Contact
-            </a>
+            </Link>
           </nav>
 
           <div className="header__mobile-social-actions">
