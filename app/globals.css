@@ -1,7 +1,7 @@
 :root {
   --site-bar-height: 5.5rem;
   --header-height: var(--site-bar-height);
-  --space-scene-height: 260rem;
+  --space-scene-height: 400rem;
   --background-color: #15111f;
   --surface-color: #1d1729;
   --dropdown-color: #17121f;
@@ -585,7 +585,47 @@ button {
 }
 
 .planet.glow {
-  display: none;
+  position: absolute;
+  z-index: 0;
+  display: block;
+  --planet-scale: clamp(
+    0.8,
+    calc(0.8 + ((100vw - 768px) / 232px) * 0.2),
+    1
+  );
+  width: calc(var(--planet-diameter) * var(--planet-scale));
+  aspect-ratio: 1;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+
+/* Mobile planet positions */
+
+
+.planet--one {
+  top: 1%;
+  left: 110%;
+}
+
+.planet--two {
+  top: 60%;
+  left: 85%;
+}
+
+.planet--three {
+  top: 4%;
+  left: 8%;
+}
+
+.planet--four {
+  top: 65%;
+  left: 15%;
+}
+
+.planet--five {
+  top: 15%;
+  left: 82%;
 }
 
 .planet__surface {
@@ -898,35 +938,30 @@ span.glow {
     display: none;
   }
 
-  .planet.glow {
-    position: absolute;
-    z-index: 0;
-    display: block;
-    --planet-scale: clamp(
-      0.8,
-      calc(0.8 + ((100vw - 768px) / 232px) * 0.2),
-      1
-    );
-    width: calc(var(--planet-diameter) * var(--planet-scale));
-    aspect-ratio: 1;
-    border-radius: 50%;
-    pointer-events: none;
-    transform: translate(-50%, -50%);
+  /* Tablet planet positions */
+  .planet--one {
+    top: 1%;
+    left: 20%;
   }
 
-  .planet--top-left {
-    top: 38%;
-    left: 18%;
+  .planet--two {
+    top: 16%;
+    left: 90%;
   }
 
-  .planet--contact {
-    top: 60%;
-    left: 75%;
+  .planet--three {
+    top: 15%;
+    left: 13%;
   }
 
-  .planet--lower-title {
-    top: 90%;
-    left: 30%;
+  .planet--four {
+    top: 68%;
+    left: 15%;
+  }
+
+  .planet--five {
+    top: 62%;
+    left: 67%;
   }
 }
 
@@ -937,5 +972,31 @@ span.glow {
 
   .project-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /* Desktop planet positions */
+  .planet--one {
+    top: 1%;
+    left: 20%;
+  }
+
+  .planet--two {
+    top: 30%;
+    left: 85%;
+  }
+
+  .planet--three {
+    top: 20%;
+    left: 13%;
+  }
+
+  .planet--four {
+    top: 90%;
+    left: 15%;
+  }
+
+  .planet--five {
+    top: 80%;
+    left: 80%;
   }
 }
