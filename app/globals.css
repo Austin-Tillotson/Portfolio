@@ -1,6 +1,7 @@
 :root {
   --site-bar-height: 5.5rem;
   --header-height: var(--site-bar-height);
+  --footer-height: 4rem;
   --space-scene-height: 400rem;
   --background-color: #15111f;
   --surface-color: #1d1729;
@@ -185,7 +186,7 @@ button {
 
 .site-main {
   position: relative;
-  min-height: calc(100svh - var(--header-height));
+  min-height: calc(100svh - var(--footer-height));
   padding-top: var(--header-height);
   isolation: isolate;
   overflow: clip;
@@ -568,10 +569,12 @@ button {
   transform-origin: right center;
 }
 
-.footer {
+.footer.site-bar {
   position: relative;
   z-index: 2;
-  height: 4rem;
+  height: var(--footer-height);
+  min-height: var(--footer-height);
+  max-height: var(--footer-height);
   border-top: 1px solid var(--border-color);
 }
 
