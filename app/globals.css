@@ -1,6 +1,7 @@
 :root {
   --site-bar-height: 5.5rem;
   --header-height: var(--site-bar-height);
+  --space-scene-height: 260rem;
   --background-color: #15111f;
   --surface-color: #1d1729;
   --dropdown-color: #17121f;
@@ -187,7 +188,7 @@ button {
   min-height: calc(100svh - var(--header-height));
   padding-top: var(--header-height);
   isolation: isolate;
-  overflow-x: clip;
+  overflow: clip;
 }
 
 .site-main__content {
@@ -198,7 +199,10 @@ button {
 .space-scene {
   position: absolute;
   z-index: 0;
-  inset: 0;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: var(--space-scene-height);
   overflow: hidden;
   pointer-events: none;
 }
@@ -927,6 +931,10 @@ span.glow {
 }
 
 @media (min-width: 62.5rem) {
+  :root {
+    --space-scene-height: 200rem;
+  }
+
   .project-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
