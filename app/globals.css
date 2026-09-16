@@ -537,8 +537,64 @@ button {
 
 .about-page__content {
   display: grid;
+  width: min(100%, 48rem);
   justify-items: center;
   gap: 2rem;
+}
+
+.about-accordion {
+  display: grid;
+  width: 100%;
+  gap: 0.75rem;
+}
+
+.about-accordion__item {
+  display: grid;
+  overflow: hidden;
+  border: 1px solid rgb(56 45 75 / 0.7);
+  border-radius: 0.75rem;
+  background: rgb(12 9 19 / 0.7);
+  -webkit-backdrop-filter: blur(0.75rem);
+  backdrop-filter: blur(0.75rem);
+}
+
+.about-accordion__trigger {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  border: 0;
+  background: transparent;
+  color: var(--text-color);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+  text-align: left;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.about-accordion__trigger:hover {
+  background: var(--surface-hover-color);
+  color: var(--accent-color);
+}
+
+.about-accordion__trigger--open {
+  box-shadow: inset 0 -1px 0 var(--border-color);
+}
+
+.about-accordion__trigger:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 0.2rem;
+}
+
+.about-accordion__panel {
+  display: grid;
+  gap: 1rem;
+  padding: 1.5rem;
+  text-align: left;
+}
+
+.about-accordion__paragraph {
+  margin: 0;
+  line-height: 1.7;
 }
 
 .hero__image-container {
