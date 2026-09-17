@@ -184,12 +184,17 @@ button {
   gap: 0.5rem;
 }
 
-.site-main {
+.site-shell {
   position: relative;
-  min-height: calc(100svh - var(--footer-height));
-  padding-top: var(--header-height);
   isolation: isolate;
   overflow: clip;
+}
+
+.site-main {
+  position: relative;
+  z-index: 1;
+  min-height: calc(100svh - var(--footer-height));
+  padding-top: var(--header-height);
 }
 
 .site-main__content {
@@ -203,7 +208,7 @@ button {
   top: 0;
   right: 0;
   left: 0;
-  height: var(--space-scene-height);
+  height: calc(var(--space-scene-height) + var(--footer-height));
   overflow: hidden;
   pointer-events: none;
 }

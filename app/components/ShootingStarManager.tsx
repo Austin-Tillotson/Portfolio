@@ -227,7 +227,14 @@ export default function ShootingStarManager() {
   const getOriginY = useCallback(() => {
     const manager = managerRef.current;
 
-    return manager === null ? 0 : Math.max(0, -manager.getBoundingClientRect().top);
+    if (manager === null) {
+      return 0;
+    }
+
+    const requestedOriginY = -manager.getBoundingClientRect().top;
+    const lastValidOriginY = Math.max(0, manager.clientHeight - window.innerHeight);
+
+    return Math.min(Math.max(requestedOriginY, 0), lastValidOriginY);
   }, []);
 
   useEffect(() => {

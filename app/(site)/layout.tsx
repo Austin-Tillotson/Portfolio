@@ -8,13 +8,13 @@ type SiteLayoutProps = Readonly<{
 
 export default function SiteLayout({ children }: SiteLayoutProps) {
   return (
-    <>
+    <div className="site-shell">
       <Header />
+      <SpaceScene />
       <main className="site-main">
-        <SpaceScene />
         <div className="site-main__content">{children}</div>
       </main>
       <Footer />
-    </>
+    </div>
   );
 }
