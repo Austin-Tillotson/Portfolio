@@ -46,6 +46,9 @@ export default function Hero() {
           <Link className="action-link hero__about-link" href="/about">
             Learn More About Me
           </Link>
+          <Link className="action-link hero__expanse-link" href="/expanse">
+            Observe The Endless Expanse
+          </Link>
         </div>
       </div>
     </section>

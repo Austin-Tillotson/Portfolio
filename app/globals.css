@@ -535,6 +535,15 @@ button {
   margin-top: 2rem;
 }
 
+.hero__expanse-link {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.expanse-page {
+  min-height: calc(var(--space-scene-height) - var(--header-height));
+}
+
 .about-page__content {
   display: grid;
   width: min(100%, 48rem);
