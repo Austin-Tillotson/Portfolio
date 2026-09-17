@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 const aboutSections = [
   {
@@ -88,10 +88,66 @@ const aboutSections = [
       it may have in the future.`,
     ],
   },
+  {
+    id: "fun_fact",
+    label: "Fun Fact",
+    paragraphs: [
+      `Wonder why the site is called ARTillotson?`,
+      `Well, it's because my initials spell ART!`,
+    ],
+  },
 ];
 
 export default function AboutAccordion() {
   const [openSectionId, setOpenSectionId] = useState<string | null>(null);
+  const sectionRefs = useRef<Record<string, HTMLDivElement | null>>({});
+
+  function toggleSection(id: string) {
+    const isOpening = openSectionId !== id;
+
+    setOpenSectionId(isOpening ? id : null);
+
+    if (!isOpening) {
+      return;
+    }
+
+    window.requestAnimationFrame(() => {
+      const section = sectionRefs.current[id];
+      const header = document.querySelector(".header");
+
+      if (!section) {
+        return;
+      }
+
+      const headerHeight = header?.getBoundingClientRect().height ?? 0;
+      const safeTop = headerHeight + 16;
+      const viewportBottom = window.innerHeight - 16;
+      const sectionRect = section.getBoundingClientRect();
+      const firstParagraph = section.querySelector<HTMLElement>(
+        ".about-accordion__paragraph",
+      );
+      const firstParagraphTop = firstParagraph?.getBoundingClientRect().top;
+      let scrollOffset = 0;
+
+      if (sectionRect.top < safeTop) {
+        scrollOffset = sectionRect.top - safeTop;
+      } else if (
+        firstParagraphTop !== undefined &&
+        firstParagraphTop > viewportBottom
+      ) {
+        scrollOffset = firstParagraphTop - viewportBottom;
+      } else {
+        return;
+      }
+
+      window.scrollBy({
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches
+          ? "auto"
+          : "smooth",
+        top: scrollOffset,
+      });
+    });
+  }
 
   return (
     <div className="about-accordion">
@@ -104,13 +160,16 @@ export default function AboutAccordion() {
           <div
             className={`about-accordion__item${isOpen ? " about-accordion__item--open" : ""}`}
             key={id}
+            ref={(element) => {
+              sectionRefs.current[id] = element;
+            }}
           >
             <button
               aria-controls={panelId}
               aria-expanded={isOpen}
               className={`about-accordion__trigger${isOpen ? " about-accordion__trigger--open" : ""}`}
               id={triggerId}
-              onClick={() => setOpenSectionId(isOpen ? null : id)}
+              onClick={() => toggleSection(id)}
               type="button"
             >
               {label}

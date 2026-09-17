@@ -582,7 +582,8 @@ button {
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.about-accordion__trigger:hover {
+.about-accordion__trigger:hover,
+.about-accordion__trigger--open {
   background: var(--surface-hover-color);
   color: var(--accent-color);
 }
