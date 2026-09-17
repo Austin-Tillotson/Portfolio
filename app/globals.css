@@ -1035,6 +1035,43 @@ span.glow {
   }
 }
 
+@media (min-width: 48rem) and (max-width: 62.4375rem) {
+  :root {
+    --site-bar-height: 7rem;
+  }
+
+  .header__content {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: 3rem 1fr;
+    gap: 0;
+  }
+
+  .header__title {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    align-self: center;
+    font-size: 1.875rem;
+    padding-top: 1rem;
+  }
+
+  .header__nav {
+    position: static;
+    grid-column: 1;
+    grid-row: 2;
+    align-items: center;
+    justify-self: start;
+    gap: 3rem;
+    transform: none;
+  }
+
+  .header__actions {
+    grid-column: 2;
+    grid-row: 2;
+    margin-left: 0;
+  }
+}
+
 @media (min-width: 62.5rem) {
   :root {
     --space-scene-height: 200rem;
