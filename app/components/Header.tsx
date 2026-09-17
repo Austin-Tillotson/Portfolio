@@ -25,6 +25,7 @@ const socialLinks = [
 const navigationLinks = [
   { label: "Projects", href: "/#projects" },
   { label: "Contact", href: "/#contact" },
+  { label: "About Me", href: "/about" },
 ];
 
 export default function Header() {
@@ -93,12 +94,16 @@ export default function Header() {
       {isMenuOpen && (
         <div id="mobile-menu" className="header__dropdown">
           <nav className="header__mobile-nav" aria-label="Mobile navigation">
-            <Link className="header__mobile-link" href="/#projects" onClick={() => setIsMenuOpen(false)}>
-              Projects
-            </Link>
-            <Link className="header__mobile-link" href="/#contact" onClick={() => setIsMenuOpen(false)}>
-              Contact
-            </Link>
+            {navigationLinks.map(({ label, href }) => (
+              <Link
+                className="header__mobile-link"
+                href={href}
+                key={label}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {label}
+              </Link>
+            ))}
           </nav>
 
           <div className="header__mobile-social-actions">

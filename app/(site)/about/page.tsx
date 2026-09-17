@@ -1,4 +1,3 @@
-import Link from "next/link";
 import AboutAccordion from "../../components/AboutAccordion";
 
 export default function AboutPage() {
@@ -7,9 +6,6 @@ export default function AboutPage() {
       <div className="about-page__content">
         <h1 className="content-section__title">About Me</h1>
         <AboutAccordion />
-        <Link className="action-link" href="/">
-          Return to Home
-        </Link>
       </div>
     </section>
   );
