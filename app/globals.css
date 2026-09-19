@@ -538,14 +538,11 @@ button {
   margin-top: 3rem;
 }
 
-.hero__about-link {
+.hero__actions {
+  display: grid;
   width: 100%;
   margin-top: 2rem;
-}
-
-.hero__expanse-link {
-  width: 100%;
-  margin-top: 1rem;
+  gap: 1rem;
 }
 
 .expanse-page {

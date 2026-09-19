@@ -43,12 +43,17 @@ export default function Hero() {
             With a strong passion for frontend development, my goal is to transform 
             ideas and designs into seamless digital experiences that engage users and drive results.
           </p>
-          <Link className="action-link hero__about-link" href="/about">
-            Learn More About Me
-          </Link>
-          <Link className="action-link hero__expanse-link" href="/expanse">
-            Observe The Endless Expanse
-          </Link>
+          <div className="hero__actions">
+            <Link className="action-link" href="#projects">
+              See My Projects
+            </Link>
+            <Link className="action-link" href="/about">
+              Learn More About Me
+            </Link>
+            <Link className="action-link" href="/expanse">
+              Observe The Endless Expanse
+            </Link>
+          </div>
         </div>
       </div>
     </section>
