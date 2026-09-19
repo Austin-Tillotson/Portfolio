@@ -120,13 +120,13 @@ export default function Hero() {
           </div>
           <div className="hero__actions">
             <Link className="action-link" href="#projects">
-              See My Projects
+              My Projects
             </Link>
             <Link className="action-link" href="/about">
-              Learn More About Me
+              About Me
             </Link>
             <Link className="action-link" href="/expanse">
-              Observe The Endless Expanse
+              Space View
             </Link>
           </div>
         </div>
