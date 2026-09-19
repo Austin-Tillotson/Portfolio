@@ -514,7 +514,12 @@ button {
 .hero__software,
 .hero__engineer {
   display: block;
-  font-size: clamp(6.5rem, 12vw, 7rem);
+}
+
+.hero__software,
+.hero__engineer,
+.content-section__title {
+  font-size: 4rem;
   font-weight: 700;
   line-height: 0.95;
 }
@@ -522,9 +527,6 @@ button {
 .hero__engineer,
 .content-section__title {
   color: var(--accent-color);
-  font-size: 4rem;
-  font-weight: 700;
-  line-height: 0.95;
 }
 
 .hero__paragraph {
@@ -895,10 +897,7 @@ span.glow {
     padding-inline: 1rem;
   }
 
-  .hero__software {
-    font-size: clamp(3.5rem, calc(20.9vw - 0.7rem), 6.5rem);
-  }
-
+  .hero__software,
   .hero__engineer,
   .content-section__title {
     font-size: clamp(2.75rem, calc(8.7vw + 1rem), 4rem);
@@ -942,10 +941,6 @@ span.glow {
     grid-column: 2;
     grid-row: 1;
     width: clamp(18rem, calc(44.44vw - 5.33rem), 28rem);
-  }
-
-  .hero__software {
-    font-size: clamp(4rem, 7vw, 6.5rem);
   }
 
   .site-bar__content {
