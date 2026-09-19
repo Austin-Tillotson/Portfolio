@@ -501,7 +501,7 @@ button {
 }
 
 .hero__title {
-  margin: 1rem 0 3rem 0;
+  margin: 1rem 0 1.5rem;
 }
 
 .hero__software,
@@ -536,6 +536,66 @@ button {
 
 .hero__paragraph + .hero__paragraph {
   margin-top: 3rem;
+}
+
+.hero__skills {
+  display: grid;
+  margin-top: 1.5rem;
+  gap: 2rem;
+}
+
+.hero__skill-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.25rem;
+}
+
+.hero__skill-group + .hero__skill-group {
+  position: relative;
+  padding-top: 2rem;
+}
+
+.hero__skill-group + .hero__skill-group::before {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 35%;
+  border-top: 1px solid rgb(56 45 75 / 0.55);
+  content: "";
+  transform: translateX(-50%);
+}
+
+.skill-icon {
+  position: relative;
+  color: var(--skill-color);
+}
+
+.skill-icon__icon {
+  display: block;
+  transition: filter 0.2s ease;
+}
+
+.skill-icon__label {
+  position: absolute;
+  top: calc(100% + 0.25rem);
+  left: 50%;
+  color: var(--skill-color);
+  font-size: 0.875rem;
+  font-weight: 700;
+  opacity: 0;
+  transform: translate(-50%, -0.25rem);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  white-space: nowrap;
+}
+
+.skill-icon:hover .skill-icon__icon {
+  filter: drop-shadow(0 0 0.35rem var(--skill-color));
+}
+
+.skill-icon:hover .skill-icon__label {
+  opacity: 1;
+  transform: translate(-50%, 0);
 }
 
 .hero__actions {
@@ -925,7 +985,7 @@ span.glow {
       minmax(0, 1fr)
       clamp(18rem, calc(44.44vw - 5.33rem), 35rem);
     align-items: center;
-    gap: clamp(2rem, 6vw, 6rem);
+    gap: clamp(2rem, 6%, 6rem);
   }
 
   .hero__copy {
