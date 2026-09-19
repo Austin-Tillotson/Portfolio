@@ -216,7 +216,7 @@ button {
 .content-section {
   display: grid;
   min-height: 20rem;
-  padding: 4rem 1rem;
+  padding: 1rem 1rem;
   place-items: center;
   scroll-margin-top: calc(var(--header-height) + 1rem);
   text-align: center;
@@ -482,8 +482,7 @@ button {
 .hero {
   display: grid;
   align-items: center;
-  min-height: calc(100svh - var(--header-height));
-  padding: 2rem 1rem;
+  padding: 1rem 1rem;
   scroll-margin-top: calc(var(--header-height) + 1rem);
 }
 
