@@ -34,14 +34,8 @@ export default function Hero() {
             </h1>
           </div>
           <p className="hero__paragraph">
-            Taking Ideas and Designs and bringing them to Life through
-            Responsive Frontend with React, JavaScript, and TypeScript.
-          </p>
-          <p className="hero__paragraph">
-            Greetings, I am Austin Tillotson, a Software Engineer who excels in 
-            developing responsive and visually appealing web applications. 
-            With a strong passion for frontend development, my goal is to transform 
-            ideas and designs into seamless digital experiences that engage users and drive results.
+            With a strong passion for Frontend, I excel in taking Designs and Ideas 
+            and bringing them to Life in responsive and visually appealing web applications
           </p>
           <div className="hero__actions">
             <Link className="action-link" href="#projects">
