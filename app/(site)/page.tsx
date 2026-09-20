@@ -59,8 +59,9 @@ export default function Home() {
       <section className="content-section content-section--projects" id="projects">
         <h2 className="content-section__title">Projects</h2>
         <div className="project-grid">
-          {projects.map((project) => (
+          {projects.map((project, index) => (
             <ProjectCard
+              animationDelay={index * 0.12}
               description={project.description}
               githubUrl={project.githubUrl}
               imageAlt={`${project.name} project screenshot`}
