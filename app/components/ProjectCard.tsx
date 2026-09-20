@@ -40,26 +40,6 @@ export default function ProjectCard({
       <div className="project-card__content">
         <div className="project-card__header">
           <h3 className="project-card__title">{title}</h3>
-          <div className="project-card__actions">
-            <a
-              aria-label={`${title} live site`}
-              className="project-card__action"
-              href={vercelUrl}
-              rel="noreferrer"
-              target="_blank"
-            >
-              <SiVercel aria-hidden="true" />
-            </a>
-            <a
-              aria-label={`${title} GitHub repository`}
-              className="project-card__action"
-              href={githubUrl}
-              rel="noreferrer"
-              target="_blank"
-            >
-              <FaGithub aria-hidden="true" />
-            </a>
-          </div>
         </div>
         <p className="project-card__description">{description}</p>
         <section className="project-card__skills-section" aria-label="Project skills">
@@ -72,6 +52,28 @@ export default function ProjectCard({
             ))}
           </ul>
         </section>
+        <div className="project-card__actions">
+          <a
+            aria-label={`${title} live site`}
+            className="project-card__action"
+            href={vercelUrl}
+            rel="noreferrer"
+            target="_blank"
+          >
+            <SiVercel aria-hidden="true" />
+            <span>Demo</span>
+          </a>
+          <a
+            aria-label={`${title} GitHub repository`}
+            className="project-card__action"
+            href={githubUrl}
+            rel="noreferrer"
+            target="_blank"
+          >
+            <FaGithub aria-hidden="true" />
+            <span>Repo</span>
+          </a>
+        </div>
       </div>
     </Card>
   );
