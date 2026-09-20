@@ -232,21 +232,11 @@ button {
 
 .content-section {
   display: grid;
-  position: relative;
   min-height: 20rem;
   padding: 1rem 1rem;
   place-items: center;
   scroll-margin-top: calc(var(--header-height) + 1rem);
   text-align: center;
-}
-
-.content-section::before {
-  position: absolute;
-  top: 0;
-  right: 10%;
-  left: 10%;
-  border-top: 1px solid var(--border-color);
-  content: "";
 }
 
 .content-section p {
