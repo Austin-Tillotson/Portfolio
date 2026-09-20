@@ -1,14 +1,9 @@
-import type { CSSProperties, ComponentType } from "react";
-
-type IconComponent = ComponentType<{
-  "aria-label": string;
-  className?: string;
-  size?: number | string;
-}>;
+import type { CSSProperties } from "react";
+import type { TechnologyIcon } from "../lib/technologyConfig";
 
 type SkillIconProps = {
   color: string;
-  Icon: IconComponent;
+  Icon: TechnologyIcon;
   label: string;
   size?: number;
 };

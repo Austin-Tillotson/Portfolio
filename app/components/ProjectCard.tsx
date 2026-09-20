@@ -1,6 +1,8 @@
 import Image, { type StaticImageData } from "next/image";
 import { FaGithub } from "react-icons/fa6";
 import { SiVercel } from "react-icons/si";
+import type { CSSProperties } from "react";
+import { projectTechnologies } from "../lib/technologyConfig";
 import Card from "./Card";
 
 type ProjectCardProps = {
@@ -53,11 +55,25 @@ export default function ProjectCard({
         <section className="project-card__skills-section" aria-label="Project skills">
           <h4 className="project-card__skills-title">Skills</h4>
           <ul className="project-card__skills">
-            {skills.map((skill) => (
-              <li className="project-card__skill" key={skill}>
-                {skill}
-              </li>
-            ))}
+            {skills.map((skill) => {
+              const technology = projectTechnologies[skill];
+              const skillStyle = technology
+                ? ({ "--skill-color": technology.color } as CSSProperties)
+                : undefined;
+
+              return (
+                <li className="project-card__skill" key={skill} style={skillStyle}>
+                  {technology && (
+                    <technology.Icon
+                      aria-hidden={true}
+                      className="project-card__skill-icon"
+                      size={20}
+                    />
+                  )}
+                  <span>{skill}</span>
+                </li>
+              );
+            })}
           </ul>
         </section>
         <div className="project-card__actions">
