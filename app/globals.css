@@ -84,6 +84,7 @@ button {
   right: 0;
   left: 0;
   border-bottom: 1px solid var(--border-color);
+  animation: header-appear 0.5s ease-out both;
 }
 
 .header__content {
@@ -231,6 +232,7 @@ button {
 
 .content-section {
   display: grid;
+  position: relative;
   min-height: 20rem;
   padding: 1rem 1rem;
   place-items: center;
@@ -977,7 +979,23 @@ span.glow {
   }
 }
 
+@keyframes header-appear {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .header {
+    animation: none;
+  }
+
   .glow--pulse::before {
     animation: none;
   }
