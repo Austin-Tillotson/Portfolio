@@ -323,6 +323,10 @@ button {
   scrollbar-width: thin;
 }
 
+.project-card__screenshot-link {
+  display: block;
+}
+
 .project-card__image {
   display: block;
   width: 100%;

@@ -30,12 +30,20 @@ export default function ProjectCard({
         role="region"
         tabIndex={0}
       >
-        <Image
-          alt={imageAlt}
-          className="project-card__image"
-          sizes="(max-width: 62.499rem) calc(100vw - 3rem), (max-width: 75rem) calc((100vw - 5.5rem) / 2), 35.75rem"
-          src={imageSrc}
-        />
+        <a
+          aria-label={`Visit ${title} demo site`}
+          className="project-card__screenshot-link"
+          href={vercelUrl}
+          rel="noreferrer"
+          target="_blank"
+        >
+          <Image
+            alt={imageAlt}
+            className="project-card__image"
+            sizes="(max-width: 62.499rem) calc(100vw - 3rem), (max-width: 75rem) calc((100vw - 5.5rem) / 2), 35.75rem"
+            src={imageSrc}
+          />
+        </a>
       </div>
       <div className="project-card__content">
         <div className="project-card__header">
