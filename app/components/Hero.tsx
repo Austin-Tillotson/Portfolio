@@ -48,8 +48,8 @@ export default function Hero() {
           <div className="hero__skills">
             {heroTechnologyGroups.map((group) => (
               <div aria-label={group.label} className="hero__skill-group" key={group.label}>
-                {group.skills.map((skill) => (
-                  <SkillIcon key={skill.label} {...skill} />
+                {group.skills.map((skill, index) => (
+                  <SkillIcon delay={index * 70} key={skill.label} {...skill} />
                 ))}
               </div>
             ))}
