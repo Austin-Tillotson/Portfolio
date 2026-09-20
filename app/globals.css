@@ -11,6 +11,16 @@
   --text-color: #f5f1ff;
   --accent-color: #c4b5fd;
   --accent-hover-color: #cec2fd;
+  --accent-transition-color: #a78bfa;
+  --accent-dark-color: #7662b1;
+  --accent-deep-color: #473c6b;
+  --accent-action-hover-background: linear-gradient(
+    to bottom,
+    var(--accent-color) 0%,
+    var(--accent-transition-color) 50%,
+    var(--accent-dark-color) 85%,
+    var(--accent-deep-color) 100%
+  );
   color-scheme: dark;
 }
 
@@ -108,10 +118,6 @@ button {
   font-size: 1.25rem;
 }
 
-.header__menu-button:hover {
-  background: var(--surface-hover-color);
-}
-
 .header__menu-button,
 .header__social-button {
   border: 1px solid var(--border-color);
@@ -119,8 +125,17 @@ button {
   font-size: 2rem;
 }
 
+.header__menu-button:hover {
+  background: linear-gradient(
+    to right,
+    var(--surface-hover-color) 0%,
+    var(--surface-hover-color) 90%,
+    var(--surface-color) 100%
+  );
+}
+
 .header__social-button:hover {
-  background: var(--accent-color);
+  background: var(--accent-action-hover-background);
   color: #1a1325;
 }
 
@@ -138,8 +153,9 @@ button {
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.action-link:hover {
-  background: var(--accent-color);
+.action-link:hover,
+.project-card__action:hover {
+  background: var(--accent-action-hover-background);
   color: #1a1325;
 }
 
@@ -307,11 +323,6 @@ button {
 
 .project-card__action svg {
   font-size: 1.25rem;
-}
-
-.project-card__action:hover {
-  background: var(--accent-color);
-  color: #1a1325;
 }
 
 .project-card__screenshot {
