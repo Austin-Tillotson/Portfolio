@@ -107,6 +107,7 @@ export default function ContactForm() {
     ...(missingFieldsMessage ? [missingFieldsMessage] : []),
     ...(errors.invalidEmail ? ["Please input a valid email address."] : []),
   ];
+  const hasErrorMessages = errorMessages.length > 0;
 
   return (
     <motion.div
@@ -156,24 +157,23 @@ export default function ContactForm() {
             required
           />
         </label>
-        <div aria-live="polite" className="contact-form__errors">
+        {hasErrorMessages && (
+          <div aria-live="polite" className="contact-form__errors">
+            {errorMessages.map((errorMessage) => (
+              <p className="contact-form__error" key={errorMessage}>
+                {errorMessage}
+              </p>
+            ))}
+          </div>
+        )}
+        {submissionStatus.type && (
           <p
-            className={`contact-form__error${errorMessages[0] ? " contact-form__error--visible" : ""}`}
+            aria-live="polite"
+            className={`contact-form__submission-status contact-form__submission-status--${submissionStatus.type}`}
           >
-            {errorMessages[0]}
+            {submissionStatus.message}
           </p>
-          <p
-            className={`contact-form__error${errorMessages[1] ? " contact-form__error--visible" : ""}`}
-          >
-            {errorMessages[1]}
-          </p>
-        </div>
-        <p
-          aria-live="polite"
-          className={`contact-form__submission-status${submissionStatus.type ? ` contact-form__submission-status--${submissionStatus.type}` : ""}`}
-        >
-          {submissionStatus.message}
-        </p>
+        )}
         <button className="contact-form__submit" disabled={isSubmitting} type="submit">
           {isSubmitting ? "Sending..." : "Contact Me"}
         </button>

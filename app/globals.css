@@ -444,7 +444,6 @@ button {
 .contact-form__errors {
   display: grid;
   gap: 0.25rem;
-  min-height: 3.125rem;
 }
 
 .contact-form__error {
@@ -452,29 +451,20 @@ button {
   color: #fca5a5;
   font-size: 0.875rem;
   line-height: 1.5;
-  visibility: hidden;
-}
-
-.contact-form__error--visible {
-  visibility: visible;
 }
 
 .contact-form__submission-status {
-  min-height: 1.5rem;
   margin: 0;
   font-size: 0.875rem;
   line-height: 1.5;
-  visibility: hidden;
 }
 
 .contact-form__submission-status--error {
   color: #fca5a5;
-  visibility: visible;
 }
 
 .contact-form__submission-status--success {
   color: #bbf7d0;
-  visibility: visible;
 }
 
 .contact-form__submit {
