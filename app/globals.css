@@ -386,6 +386,10 @@ button {
   width: 100%;
 }
 
+.contact-card-reveal {
+  width: min(100%, 40rem);
+}
+
 .contact-form {
   display: grid;
   gap: 1rem;

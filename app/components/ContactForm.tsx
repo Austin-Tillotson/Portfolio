@@ -1,6 +1,7 @@
 "use client";
 
 import type { FormEvent } from "react";
+import { motion, useReducedMotion } from "motion/react";
 import { useState } from "react";
 import Card from "./Card";
 
@@ -30,6 +31,7 @@ function createMissingFieldsMessage(fields: string[]) {
 }
 
 export default function ContactForm() {
+  const shouldReduceMotion = useReducedMotion();
   const [errors, setErrors] = useState<FormErrors>({
     invalidEmail: false,
     missingFields: [],
@@ -107,8 +109,19 @@ export default function ContactForm() {
   ];
 
   return (
-    <Card className="contact-card">
-      <form className="contact-form" noValidate onSubmit={handleSubmit}>
+    <motion.div
+      className="contact-card-reveal"
+      initial={shouldReduceMotion ? false : { opacity: 0, y: 32 }}
+      transition={{
+        duration: 1.2,
+        delay: shouldReduceMotion ? 0 : 0.2,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+      viewport={{ once: true, margin: "-120px" }}
+      whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
+    >
+      <Card className="contact-card">
+        <form className="contact-form" noValidate onSubmit={handleSubmit}>
         <label className="contact-form__field">
           <span className="contact-form__label">Your Name</span>
           <input
@@ -164,7 +177,8 @@ export default function ContactForm() {
         <button className="contact-form__submit" disabled={isSubmitting} type="submit">
           {isSubmitting ? "Sending..." : "Contact Me"}
         </button>
-      </form>
-    </Card>
+        </form>
+      </Card>
+    </motion.div>
   );
 }

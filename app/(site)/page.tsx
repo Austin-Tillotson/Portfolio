@@ -3,6 +3,7 @@ import applecartScreenshot from "../../public/ApplecartUI.png";
 import balancePointScreenshot from "../../public/BalancePoint.png";
 import codeSwitcherScreenshot from "../../public/CodeSwitcher.png";
 import passPointScreenshot from "../../public/PassPoint.png";
+import AnimatedSectionTitle from "../components/AnimatedSectionTitle";
 import ContactForm from "../components/ContactForm";
 import Hero from "../components/Hero";
 import ProjectCard from "../components/ProjectCard";
@@ -57,7 +58,7 @@ export default function Home() {
       <Hero />
 
       <section className="content-section content-section--projects" id="projects">
-        <h2 className="content-section__title">Projects</h2>
+        <AnimatedSectionTitle>Projects</AnimatedSectionTitle>
         <div className="project-grid">
           {projects.map((project, index) => (
             <ProjectCard
@@ -76,7 +77,7 @@ export default function Home() {
       </section>
 
       <section className="content-section content-section--contact" id="contact">
-        <h2 className="content-section__title">Contact Me</h2>
+        <AnimatedSectionTitle>Contact Me</AnimatedSectionTitle>
         <ContactForm />
       </section>
     </>
