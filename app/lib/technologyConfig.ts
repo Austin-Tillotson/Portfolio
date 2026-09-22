@@ -22,7 +22,7 @@ import {
 import { Css3 } from "@dev.icons/react/mono";
 import { Braces, ChartNoAxesCombined } from "lucide-react";
 import type { ComponentType } from "react";
-import { SiPrimereact } from "react-icons/si";
+import { SiHtml5, SiPrimereact } from "react-icons/si";
 
 export type TechnologyIcon = ComponentType<{
   "aria-hidden"?: boolean;
@@ -46,6 +46,7 @@ export const technologies = {
   firebase: { label: "Firebase", Icon: FirebaseIcon, color: "#ffca28" },
   git: { label: "Git", Icon: GitIcon, color: "#f05032" },
   html: { label: "HTML", Icon: Html5, color: "#e34f26" },
+  htmlProject: { label: "HTML", Icon: SiHtml5, color: "#e34f26" },
   java: { label: "Java", Icon: Java, color: "#f89820" },
   javascript: { label: "JavaScript", Icon: Javascript, color: "#f7df1e" },
   jest: { label: "Jest", Icon: Jest, color: "#c21325" },
@@ -109,7 +110,7 @@ export const projectTechnologies: Record<string, Technology> = {
   "ASP.NET": technologies.aspNet,
   CSS: technologies.css,
   Docker: technologies.docker,
-  HTML: technologies.html,
+  HTML: technologies.htmlProject,
   JavaScript: technologies.javascript,
   "Next JS": technologies.next,
   PostgreSQL: technologies.postgresql,
