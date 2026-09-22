@@ -47,8 +47,8 @@ export default function Hero() {
             </h1>
           </div>
           <p className="hero__paragraph">
-            With a strong passion for Frontend, I excel in taking Designs and Ideas 
-            and bringing them to Life in responsive and visually appealing web applications
+            Drawing on four years of engineering experience and revolutionary AI tools, I build modern, responsive 
+            full-stack web applications with exceptional efficiency and quality—grounded in strong fundamentals.
           </p>
           <motion.div
             className="hero__skills"
