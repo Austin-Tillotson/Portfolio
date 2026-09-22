@@ -533,7 +533,7 @@ button {
 }
 
 .hero__title {
-  margin: 1rem 0 1.5rem;
+  margin: 1rem 0 0;
   animation: hero-content-appear 0.55s ease-out 0.2s both;
 }
 
