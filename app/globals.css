@@ -574,21 +574,18 @@ button {
   padding-top: 2rem;
 }
 
-.hero__skill-group + .hero__skill-group::before {
+.hero__skill-separator {
   position: absolute;
   top: 0;
   left: 50%;
   width: 35%;
   border-top: 1px solid rgb(56 45 75 / 0.55);
-  content: "";
   transform: translateX(-50%);
-  animation: hero-skill-separator-appear 0.4s ease-out 0.95s both;
 }
 
 .skill-icon {
   position: relative;
   color: var(--skill-color);
-  animation: hero-skill-icon-appear 0.45s ease-out calc(0.4s + var(--skill-animation-delay)) both;
 }
 
 .skill-icon__icon {
@@ -625,20 +622,12 @@ button {
   gap: 1rem;
 }
 
-.hero__actions .action-link {
-  animation: hero-action-appear 0.5s ease-out both;
+.hero__action-reveal {
+  display: grid;
 }
 
-.hero__actions .action-link:nth-child(1) {
-  animation-delay: 0.6s;
-}
-
-.hero__actions .action-link:nth-child(2) {
-  animation-delay: 0.68s;
-}
-
-.hero__actions .action-link:nth-child(3) {
-  animation-delay: 0.76s;
+.hero__action-reveal .action-link {
+  width: 100%;
 }
 
 .expanse-page {
@@ -1037,40 +1026,6 @@ span.glow {
   }
 }
 
-@keyframes hero-skill-icon-appear {
-  from {
-    transform: translate(-0.5rem, 1rem) scale(0.8);
-    opacity: 0;
-  }
-
-  to {
-    transform: translate(0) scale(1);
-    opacity: 1;
-  }
-}
-
-@keyframes hero-skill-separator-appear {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes hero-action-appear {
-  from {
-    transform: translateX(-2rem);
-    opacity: 0;
-  }
-
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .header {
     animation: none;
@@ -1080,12 +1035,6 @@ span.glow {
   .hero__image-details,
   .hero__title,
   .hero__paragraph {
-    animation: none;
-  }
-
-  .skill-icon,
-  .hero__actions .action-link,
-  .hero__skill-group + .hero__skill-group::before {
     animation: none;
   }
 
@@ -1145,6 +1094,10 @@ span.glow {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+  }
+
+  .hero__action-reveal .action-link {
+    width: auto;
   }
 
   .site-bar__content {

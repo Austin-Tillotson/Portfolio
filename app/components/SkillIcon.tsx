@@ -3,7 +3,6 @@ import type { TechnologyIcon } from "../lib/technologyConfig";
 
 type SkillIconProps = {
   color: string;
-  delay?: number;
   Icon: TechnologyIcon;
   label: string;
   size?: number;
@@ -11,14 +10,12 @@ type SkillIconProps = {
 
 export default function SkillIcon({
   color,
-  delay = 0,
   Icon,
   label,
   size = 48,
 }: SkillIconProps) {
   const skillStyle = {
     "--skill-color": color,
-    "--skill-animation-delay": `${delay}ms`,
   } as CSSProperties;
 
   return (
