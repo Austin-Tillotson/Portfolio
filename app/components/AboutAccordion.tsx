@@ -1,5 +1,6 @@
 "use client";
 
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useRef, useState } from "react";
 
 const aboutSections = [
@@ -99,6 +100,7 @@ const aboutSections = [
 ];
 
 export default function AboutAccordion() {
+  const shouldReduceMotion = useReducedMotion();
   const [openSectionId, setOpenSectionId] = useState<string | null>(null);
   const sectionRefs = useRef<Record<string, HTMLDivElement | null>>({});
 
@@ -150,47 +152,70 @@ export default function AboutAccordion() {
   }
 
   return (
-    <div className="about-accordion">
-      {aboutSections.map(({ id, label, paragraphs }) => {
-        const isOpen = openSectionId === id;
-        const panelId = `about-panel-${id}`;
-        const triggerId = `about-trigger-${id}`;
+    <motion.div
+      className="about-accordion-reveal"
+      initial={shouldReduceMotion ? false : { opacity: 0, y: 32 }}
+      transition={{
+        duration: 1.2,
+        delay: shouldReduceMotion ? 0 : 0.2,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+      viewport={{ once: true, margin: "-120px" }}
+      whileInView={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
+    >
+      <div className="about-accordion">
+        {aboutSections.map(({ id, label, paragraphs }) => {
+          const isOpen = openSectionId === id;
+          const panelId = `about-panel-${id}`;
+          const triggerId = `about-trigger-${id}`;
 
-        return (
-          <div
-            className={`about-accordion__item${isOpen ? " about-accordion__item--open" : ""}`}
-            key={id}
-            ref={(element) => {
-              sectionRefs.current[id] = element;
-            }}
-          >
-            <button
-              aria-controls={panelId}
-              aria-expanded={isOpen}
-              className={`about-accordion__trigger${isOpen ? " about-accordion__trigger--open" : ""}`}
-              id={triggerId}
-              onClick={() => toggleSection(id)}
-              type="button"
+          return (
+            <div
+              className={`about-accordion__item${isOpen ? " about-accordion__item--open" : ""}`}
+              key={id}
+              ref={(element) => {
+                sectionRefs.current[id] = element;
+              }}
             >
-              {label}
-            </button>
-            {isOpen && (
-              <div
-                aria-labelledby={triggerId}
-                className="about-accordion__panel"
-                id={panelId}
-                role="region"
+              <button
+                aria-controls={panelId}
+                aria-expanded={isOpen}
+                className={`about-accordion__trigger${isOpen ? " about-accordion__trigger--open" : ""}`}
+                id={triggerId}
+                onClick={() => toggleSection(id)}
+                type="button"
               >
-                {paragraphs.map((paragraph) => (
-                  <p className="about-accordion__paragraph" key={paragraph}>
-                    {paragraph}
-                  </p>
-                ))}
-              </div>
-            )}
-          </div>
-        );
-      })}
-    </div>
+                {label}
+              </button>
+              <AnimatePresence>
+                {isOpen && (
+                  <motion.div
+                    animate={{ height: "auto", opacity: 1, y: 0 }}
+                    aria-labelledby={triggerId}
+                    className="about-accordion__panel-reveal"
+                    exit={shouldReduceMotion ? {} : { height: 0, opacity: 0, y: -8 }}
+                    id={panelId}
+                    initial={shouldReduceMotion ? false : { height: 0, opacity: 0, y: -8 }}
+                    role="region"
+                    transition={{
+                      duration: shouldReduceMotion ? 0 : 0.35,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                  >
+                    <div className="about-accordion__panel">
+                      {paragraphs.map((paragraph) => (
+                        <p className="about-accordion__paragraph" key={paragraph}>
+                          {paragraph}
+                        </p>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          );
+        })}
+      </div>
+    </motion.div>
   );
 }

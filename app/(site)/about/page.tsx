@@ -1,10 +1,11 @@
 import AboutAccordion from "../../components/AboutAccordion";
+import AnimatedSectionTitle from "../../components/AnimatedSectionTitle";
 
 export default function AboutPage() {
   return (
     <section className="about-page content-section">
       <div className="about-page__content">
-        <h1 className="content-section__title">About Me</h1>
+        <AnimatedSectionTitle as="h1">About Me</AnimatedSectionTitle>
         <AboutAccordion />
       </div>
     </section>
