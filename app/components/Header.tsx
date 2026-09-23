@@ -3,7 +3,7 @@
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { Unbounded } from "next/font/google";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaGithub, FaLinkedin } from "react-icons/fa6";
 import { createGlowStyle } from "../lib/createGlowStyle";
 
@@ -30,6 +30,33 @@ const navigationLinks = [
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!isMenuOpen) {
+      return;
+    }
+
+    function handlePointerDown(event: PointerEvent) {
+      if (!(event.target instanceof Node)) {
+        return;
+      }
+
+      if (
+        dropdownRef.current?.contains(event.target) ||
+        menuButtonRef.current?.contains(event.target)
+      ) {
+        return;
+      }
+
+      setIsMenuOpen(false);
+    }
+
+    document.addEventListener("pointerdown", handlePointerDown);
+
+    return () => document.removeEventListener("pointerdown", handlePointerDown);
+  }, [isMenuOpen]);
 
   return (
     <>
@@ -80,6 +107,7 @@ export default function Header() {
 
         <button
           className="header__menu-button"
+          ref={menuButtonRef}
           type="button"
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           aria-controls="mobile-menu"
@@ -92,7 +120,7 @@ export default function Header() {
       </header>
 
       {isMenuOpen && (
-        <div id="mobile-menu" className="header__dropdown">
+        <div className="header__dropdown" id="mobile-menu" ref={dropdownRef}>
           <nav className="header__mobile-nav" aria-label="Mobile navigation">
             {navigationLinks.map(({ label, href }) => (
               <Link
