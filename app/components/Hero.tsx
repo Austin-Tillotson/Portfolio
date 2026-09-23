@@ -6,6 +6,7 @@ import { motion, useReducedMotion } from "motion/react";
 import { createGlowStyle } from "../lib/createGlowStyle";
 import { heroTechnologyGroups } from "../lib/technologyConfig";
 import SkillIcon from "./SkillIcon";
+import SpaceViewLink from "./SpaceViewLink";
 
 const heroGlowStyle = createGlowStyle({
   opacity: 0.08,
@@ -113,9 +114,13 @@ export default function Hero() {
                   visible: { opacity: 1, x: 0 },
                 }}
               >
-                <Link className="action-link" href={href}>
-                  {label}
-                </Link>
+                {href === "/expanse" ? (
+                  <SpaceViewLink className="action-link">{label}</SpaceViewLink>
+                ) : (
+                  <Link className="action-link" href={href}>
+                    {label}
+                  </Link>
+                )}
               </motion.div>
             ))}
           </motion.div>

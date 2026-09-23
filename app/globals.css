@@ -225,6 +225,15 @@ button {
   overflow: clip;
 }
 
+.site-shell--exiting-to-expanse > :not(.space-scene) {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.site-shell > :not(.space-scene) {
+  transition: opacity 0.5s ease-out;
+}
+
 .site-main {
   position: relative;
   z-index: 1;
