@@ -129,7 +129,7 @@ export default function Header() {
                 key={label}
                 onClick={() => setIsMenuOpen(false)}
               >
-                {label}
+                <span className="header__mobile-link-label">{label}</span>
               </Link>
             ))}
           </nav>

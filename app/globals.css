@@ -196,11 +196,20 @@ button {
   color: var(--text-color);
   font-size: 1.125rem;
   font-weight: 700;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  transition: background-color 0.2s ease;
 }
 
 .header__mobile-link:hover {
   background: rgb(42 34 57 / 0.8);
+}
+
+.header__mobile-link-label {
+  display: inline-block;
+  transform-origin: left center;
+  transition: transform 0.2s ease;
+}
+
+.header__mobile-link:hover .header__mobile-link-label {
   transform: scale(var(--hover-scale));
 }
 
