@@ -9,6 +9,10 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Portfolio",
   description: "Personal portfolio site",
+  icons: {
+    icon: { url: "/site-icon.png", type: "image/png" },
+    apple: "/site-icon.png",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
