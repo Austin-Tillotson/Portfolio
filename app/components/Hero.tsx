@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { Download } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { createGlowStyle } from "../lib/createGlowStyle";
 import { heroTechnologyGroups } from "../lib/technologyConfig";
@@ -15,6 +16,12 @@ const heroGlowStyle = createGlowStyle({
   ellipseHeight: "80%",
   rotation: -10,
 });
+
+const heroActions = [
+  { href: "#projects", label: "My Projects" },
+  { href: "/about", label: "About Me" },
+  { href: "/expanse", label: "Space View" },
+];
 
 export default function Hero() {
   const shouldReduceMotion = useReducedMotion();
@@ -37,6 +44,15 @@ export default function Hero() {
           <figcaption className="hero__image-details">
             <span className="hero__image-name">Austin Tillotson</span>
             <span className="hero__image-location">Melbourne, FL</span>
+            <a
+              aria-label="Download Austin Tillotson resume"
+              className="action-link hero__resume-link"
+              download
+              href="/files/austin_tillotson_resume.pdf"
+            >
+              <span>Resume</span>
+              <Download aria-hidden="true" />
+            </a>
           </figcaption>
         </figure>
 
@@ -101,11 +117,7 @@ export default function Hero() {
             viewport={{ once: true, amount: 0.15 }}
             whileInView={shouldReduceMotion ? {} : "visible"}
           >
-            {[
-              { href: "#projects", label: "My Projects" },
-              { href: "/about", label: "About Me" },
-              { href: "/expanse", label: "Space View" },
-            ].map(({ href, label }) => (
+            {heroActions.map(({ href, label }) => (
               <motion.div
                 className="hero__action-reveal"
                 key={href}

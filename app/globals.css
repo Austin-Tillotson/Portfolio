@@ -149,10 +149,12 @@ button {
 }
 
 .action-link {
-  display: inline-grid;
+  display: inline-flex;
   min-height: 3rem;
   padding: 0.5rem 1rem;
-  place-items: center;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
   border: 1px solid var(--border-color);
   border-radius: 0.75rem;
   background: var(--surface-hover-color);
@@ -160,6 +162,11 @@ button {
   font-weight: 700;
   text-align: center;
   transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.action-link svg {
+  width: 1.125rem;
+  height: 1.125rem;
 }
 
 .action-link:hover,
@@ -825,6 +832,11 @@ button {
 .hero__image-location {
   color: var(--accent-color);
   font-size: 1rem;
+}
+
+.hero__resume-link {
+  margin-top: 0.5rem;
+  justify-self: center;
 }
 
 .hero__image {
