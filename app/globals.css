@@ -319,6 +319,46 @@ button {
   font-size: 1.375rem;
 }
 
+.project-card__theme-toggle {
+  display: inline-flex;
+  flex: none;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  border-radius: 0.625rem;
+}
+
+.project-card__theme-button {
+  display: inline-grid;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  place-items: center;
+  border: 0;
+  background: var(--surface-color);
+  color: var(--accent-dark-color);
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.project-card__theme-button + .project-card__theme-button {
+  border-left: 1px solid var(--border-color);
+}
+
+.project-card__theme-button:hover:not(.project-card__theme-button--active) {
+  background: var(--dropdown-color);
+  color: var(--accent-color);
+}
+
+.project-card__theme-button--active {
+  background: var(--surface-hover-color);
+  color: var(--text-color);
+}
+
+.project-card__theme-button svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
 .project-card__actions {
   display: flex;
   width: 100%;

@@ -1,10 +1,11 @@
 "use client";
 
 import Image, { type StaticImageData } from "next/image";
+import { Moon, Sun } from "lucide-react";
 import { motion, useReducedMotion } from "motion/react";
 import { FaGithub } from "react-icons/fa6";
 import { SiVercel } from "react-icons/si";
-import type { CSSProperties } from "react";
+import { useState, type CSSProperties } from "react";
 import { projectTechnologies } from "../lib/technologyConfig";
 import Card from "./Card";
 
@@ -14,6 +15,10 @@ type ProjectCardProps = {
   githubUrl: string;
   imageAlt: string;
   imageSrc: StaticImageData;
+  imageThemes?: {
+    dark: StaticImageData;
+    light: StaticImageData;
+  };
   skills: string[];
   title: string;
   vercelUrl: string;
@@ -25,11 +30,14 @@ export default function ProjectCard({
   githubUrl,
   imageAlt,
   imageSrc,
+  imageThemes,
   skills,
   title,
   vercelUrl,
 }: ProjectCardProps) {
   const shouldReduceMotion = useReducedMotion();
+  const [imageTheme, setImageTheme] = useState<"light" | "dark">("light");
+  const activeImage = imageThemes ? imageThemes[imageTheme] : imageSrc;
 
   return (
     <motion.article
@@ -64,13 +72,43 @@ export default function ProjectCard({
               alt={imageAlt}
               className="project-card__image"
               sizes="(max-width: 62.499rem) calc(100vw - 3rem), (max-width: 75rem) calc((100vw - 5.5rem) / 2), 35.75rem"
-              src={imageSrc}
+              src={activeImage}
             />
           </a>
         </div>
         <div className="project-card__content">
           <div className="project-card__header">
             <h3 className="project-card__title">{title}</h3>
+            {imageThemes && (
+              <div
+                aria-label={`${title} screenshot theme`}
+                className="project-card__theme-toggle"
+                role="group"
+              >
+                <button
+                  aria-label="Show light screenshot"
+                  aria-pressed={imageTheme === "light"}
+                  className={`project-card__theme-button ${
+                    imageTheme === "light" ? "project-card__theme-button--active" : ""
+                  }`}
+                  onClick={() => setImageTheme("light")}
+                  type="button"
+                >
+                  <Sun aria-hidden="true" />
+                </button>
+                <button
+                  aria-label="Show dark screenshot"
+                  aria-pressed={imageTheme === "dark"}
+                  className={`project-card__theme-button ${
+                    imageTheme === "dark" ? "project-card__theme-button--active" : ""
+                  }`}
+                  onClick={() => setImageTheme("dark")}
+                  type="button"
+                >
+                  <Moon aria-hidden="true" />
+                </button>
+              </div>
+            )}
           </div>
           <p className="project-card__description">{description}</p>
           <section className="project-card__skills-section" aria-label="Project skills">

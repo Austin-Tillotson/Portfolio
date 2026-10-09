@@ -2,7 +2,8 @@ import type { StaticImageData } from "next/image";
 import applecartScreenshot from "../../public/ApplecartUI.png";
 import balancePointScreenshot from "../../public/BalancePoint.png";
 import codeSwitcherScreenshot from "../../public/CodeSwitcher.png";
-import passPointScreenshot from "../../public/PassPoint.png";
+import passPointDarkScreenshot from "../../public/PassPoint_dark.png";
+import passPointScreenshot from "../../public/PassPoint_light.png";
 import AnimatedSectionTitle from "../components/AnimatedSectionTitle";
 import ContactForm from "../components/ContactForm";
 import Hero from "../components/Hero";
@@ -13,6 +14,10 @@ type Project = {
   githubUrl: string;
   name: string;
   screenshot: StaticImageData;
+  screenshotThemes?: {
+    dark: StaticImageData;
+    light: StaticImageData;
+  };
   skills: string[];
   vercelUrl: string;
 };
@@ -21,6 +26,10 @@ const projects: Project[] = [
   {
     name: "PassPoint",
     screenshot: passPointScreenshot,
+    screenshotThemes: {
+      light: passPointScreenshot,
+      dark: passPointDarkScreenshot,
+    },
     description: "PassPoint is a fullstack password manager web application built with Angular JS, ASP.NET, and PostgreSQL. The app features a responsive layout, user authentication, password management, secure storage of sensitive information, and a password generator.",
     skills: ["Angular JS", "JavaScript", "TypeScript", "SCSS", "ASP.NET", "PostgreSQL", "Docker"],
     githubUrl: "https://github.com/Austin-Tillotson/PassPoint",
@@ -67,6 +76,7 @@ export default function Home() {
               githubUrl={project.githubUrl}
               imageAlt={`${project.name} project screenshot`}
               imageSrc={project.screenshot}
+              imageThemes={project.screenshotThemes}
               key={project.name}
               skills={project.skills}
               title={project.name}
