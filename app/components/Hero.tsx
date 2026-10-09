@@ -30,7 +30,7 @@ export default function Hero() {
               height={2208}
               priority
               sizes="(max-width: 375px) 80vw, (max-width: 550px) 70vw, (max-width: 767px) 24rem, (max-width: 1200px) calc(44.44vw - 5.33rem), 28rem"
-              src="/self.jpg"
+              src="/images/self.jpg"
               width={2944}
             />
           </div>

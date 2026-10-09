@@ -1,9 +1,9 @@
 import type { StaticImageData } from "next/image";
-import applecartScreenshot from "../../public/ApplecartUI.png";
-import balancePointScreenshot from "../../public/BalancePoint.png";
-import codeSwitcherScreenshot from "../../public/CodeSwitcher.png";
-import passPointDarkScreenshot from "../../public/PassPoint_dark.png";
-import passPointScreenshot from "../../public/PassPoint_light.png";
+import applecartScreenshot from "../../public/images/ApplecartUI.png";
+import balancePointScreenshot from "../../public/images/BalancePoint.png";
+import codeSwitcherScreenshot from "../../public/images/CodeSwitcher.png";
+import passPointDarkScreenshot from "../../public/images/PassPoint_dark.png";
+import passPointScreenshot from "../../public/images/PassPoint_light.png";
 import AnimatedSectionTitle from "../components/AnimatedSectionTitle";
 import ContactForm from "../components/ContactForm";
 import Hero from "../components/Hero";

@@ -10,8 +10,8 @@ export const metadata: Metadata = {
   title: "Portfolio",
   description: "Personal portfolio site",
   icons: {
-    icon: { url: "/site-icon.png", type: "image/png" },
-    apple: "/site-icon.png",
+    icon: { url: "/images/site-icon.png", type: "image/png" },
+    apple: "/images/site-icon.png",
   },
 };
 
