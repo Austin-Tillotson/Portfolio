@@ -273,6 +273,11 @@ button {
   text-align: center;
 }
 
+.hero + .content-section,
+.content-section + .content-section {
+  margin-top: 4rem;
+}
+
 .content-section p {
   margin: 0;
 }
@@ -1163,6 +1168,11 @@ span.glow {
 }
 
 @media (min-width: 48rem) {
+  .hero + .content-section,
+  .content-section + .content-section {
+    margin-top: 8rem;
+  }
+
   .contact-card {
     max-width: 40rem;
   }
